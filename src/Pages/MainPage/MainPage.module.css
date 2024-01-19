@@ -1,0 +1,97 @@
+div.overlay {
+  background: linear-gradient(rgb(12, 2, 2, .8), rgb(12, 2, 2, .8)), url("../../Assets/Imgs/bg.jpg");
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-position: fixed; */
+}
+
+div.container {
+  backdrop-filter: blur(9px);
+  width: 100%;
+  min-height: 100vh;
+}
+
+div.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  font-family: Alata;
+  gap: 45px;
+}
+
+p.punchline {
+  font-size: 50px;
+  color: #fefefe;
+  text-align: center;
+  position: relative;
+}
+
+p.punchline::before {
+  content: '';
+  position: absolute;
+  left: 220px;
+  top: 10px;
+  width: 130px;
+  height: 30px;
+  background: #33c530af;
+  filter: blur(50px);
+}
+
+p.note {
+  font-family: quicksand;
+  font-size: 12.8px;
+  color: rgb(182, 201, 182);
+}
+
+div.inputs {
+  position: relative;
+  /* background: #000; */
+  width: 50%;
+  min-width: 320px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  --inherited-color: #53b870;
+}
+
+div.inputs input {
+  border: 2px solid var(--inherited-color);
+  background: none;
+  outline: none;
+  width: 100%;
+  border-radius: 50px;
+  height: 50px;
+  padding: 10px 25px;
+  color: white;
+  font-family: Abeezee;
+  font-size: 15px;
+}
+
+div.inputs input::placeholder {
+  color: #a3c9a9;
+}
+
+div.inputs button {
+  border: none;
+  outline: none;
+  position: absolute;
+  height: 44px;
+  width: 44px;
+  border-radius: 50px;
+  right: 3.19px;
+  background-color: var(--inherited-color);
+  background-image: url("../../Assets/Imgs/magnifying_glass.svg");
+  background-position: center;
+  background-size: 14px;
+  background-repeat: no-repeat;
+
+}
