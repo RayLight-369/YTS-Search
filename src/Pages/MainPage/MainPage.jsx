@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Styles from "./MainPage.module.css";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import MovieCardContainer from '../../Components/MovieCardContainer/MovieCardContainer';
 // import MG from "../../Assets/Imgs/magnifying_glass.svg";
 
@@ -47,7 +47,7 @@ const MainPage = () => {
   }, [ input ] );
 
   return (
-    <>
+    <AnimatePresence mode='popLayout'>
       <div className={ Styles.overlay }></div>
       <div className={ Styles.container }>
         <div className={ Styles.hero }>
@@ -62,7 +62,7 @@ const MainPage = () => {
           <MovieCardContainer movies={ movies } />
         </div>
       </div>
-    </>
+    </AnimatePresence>
   );
 };
 

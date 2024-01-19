@@ -12,7 +12,7 @@ const Navbar = () => {
         </div>
         <nav className={ Styles.nav }>
           { NavbarLinks.map( ( link, index ) => (
-            <Link className={ Styles.link } to={ link.link }>{ link.name }</Link>
+            <Link className={ Styles.link } to={ link.link } key={ index }>{ link.name }</Link>
           ) ) }
         </nav>
       </header>

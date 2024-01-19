@@ -4,11 +4,12 @@ import { ReactComponent as Star } from '../../Assets/Imgs/Star.svg';
 import { ReactComponent as Language } from '../../Assets/Imgs/language.svg';
 // import { ReactComponent as Bookmark } from '../../Assets/Imgs/bookmark.svg';
 import { ReactComponent as Play } from '../../Assets/Imgs/play.svg';
+import { motion } from "framer-motion";
 
 
-const MovieCard = ( { movie } ) => {
+const MovieCard = ( { movie, variants } ) => {
   return (
-    <a href={ movie.url } className={ Styles.cover }>
+    <motion.a href={ movie.url } className={ Styles.cover } variants={ variants }>
       <div className={ Styles.card }>
         <div className={ Styles.image }>
           <img src={ movie[ "large_cover_image" ] } alt="" />
@@ -16,7 +17,7 @@ const MovieCard = ( { movie } ) => {
         <div className={ Styles.content }>
           <div className={ Styles[ "title-rating-genre" ] }>
             <div className={ Styles[ "title-rating" ] }>
-              <p className={ Styles[ "title" ] }>{ movie.title.slice( 0, 30 ) }</p>
+              <p className={ Styles[ "title" ] }>{ movie.title.slice( 0, 20 ) }...</p>
               <div className={ Styles[ "rating" ] }>
                 <Star className={ Styles[ 'star' ] } />
                 <span>{ `${ movie.rating } / 10` }</span>
@@ -37,17 +38,17 @@ const MovieCard = ( { movie } ) => {
             <p className={ Styles[ "desc" ] }>{ movie.summary.slice( 0, 100 ) + "..." }</p>
           </div>
           <div className={ Styles[ "trailer-bookmark" ] }>
-            <button type="button" className={ Styles.play }>
+            <a onClick={ ( e ) => e.stopPropagation() } href={ `https://www.youtube.com/embed/${ movie[ "yt_trailer_code" ] }?rel=0&wmode=transparent&border=0&autoplay=1&iv_load_policy=3` } className={ Styles.play }>
               <Play className={ Styles.play } />
               <span>Watch Trailer</span>
-            </button>
+            </a>
             {/* <button type='button' className={ Styles.bm }>
               <Bookmark className={ Styles.bookmark } />
             </button> */}
           </div>
         </div>
       </div>
-    </a>
+    </motion.a>
   );
 };
 

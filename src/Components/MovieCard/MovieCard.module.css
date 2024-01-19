@@ -2,7 +2,6 @@ div.card {
   /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #02100E 72.83%, #010A0A 100%); */
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: fit-content;
   height: 500px;
   width: 300px;
@@ -38,6 +37,7 @@ div.content {
   top: 60%;
   padding: 12px;
   display: flex;
+  width: 100%;
   gap: 15px;
   flex-direction: column;
   justify-content: center;
@@ -89,6 +89,9 @@ p.year {
 }
 
 p.genre {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: #e7fff7;
 }
 
@@ -132,7 +135,8 @@ div.trailer-bookmark {
   top: 23px;
 }
 
-button.play {
+a.play {
+  text-decoration: none;
   display: flex;
   align-items: center;
   /* justify-content: center; */
