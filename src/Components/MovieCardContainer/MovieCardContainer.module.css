@@ -1,0 +1,9 @@
+div.movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100vw - 50px);
+  height: auto;
+  column-gap: 30px;
+  row-gap: 60px;
+  position: relative;
+}

@@ -7,6 +7,19 @@
 @font-face {
   font-family: Quicksand;
   src: url("../src/Assets/Fonts/Quicksand.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Quicksand;
+  src: url("../src/Assets/Fonts/QuicksandMedium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Quicksand;
+  src: url("../src/Assets/Fonts/QuicksandSemiBold.ttf");
+  font-weight: 600;
 }
 
 @font-face {

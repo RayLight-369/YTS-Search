@@ -1,3 +1,157 @@
-/* div.card {
+div.card {
+  /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #02100E 72.83%, #010A0A 100%); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  height: 500px;
+  width: 300px;
+  box-shadow: 0px 0px 19px rgba(0, 0, 0, .8);
+  position: relative;
+  z-index: 10;
+}
+
+a.cover {
+  text-decoration: none;
+  font-family: Quicksand;
+  color: #fefefe;
+  width: fit-content;
+  display: block;
+}
+
+div.card div.image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #02100E 72.83%, #010A0A 100%);
-} */
+}
+
+div.card div.image img {
+  width: 100%;
+  position: relative;
+  z-index: -1;
+}
+
+div.content {
+  position: absolute;
+  top: 60%;
+  padding: 12px;
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+div.title-rating-genre {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+div.title-rating {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+div.title-rating p.title {
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+div.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 11px; */
+}
+
+div.rating .star {
+  height: 10.5px;
+}
+
+div.rating span {
+  font-size: 10.5px;
+}
+
+div.year-genre {
+  font-size: 10.6px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+p.year {
+  font-weight: 500;
+  color: #e3e3e3;
+}
+
+p.genre {
+  color: #e7fff7;
+}
+
+div.summary-lang {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+}
+
+div.headings {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+div.headings p.heading {
+  font-weight: 500;
+  font-size: 14.6px;
+}
+
+div.lang .lang {
+  height: 11px;
+}
+
+div.lang span {
+  font-size: 11px;
+}
+
+p.desc {
+  font-size: 8.9px;
+  line-height: 145%;
+  width: 90%;
+}
+
+div.trailer-bookmark {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  top: 23px;
+}
+
+button.play {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 6px;
+  font-size: 10px;
+  padding: 6px 12px;
+  outline: none;
+  border: 1px solid #83E993;
+  background: none;
+  border-radius: 2px;
+  color: #83E993;
+}
+
+button.bm {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.bookmark {
+  height: 20px;
+}

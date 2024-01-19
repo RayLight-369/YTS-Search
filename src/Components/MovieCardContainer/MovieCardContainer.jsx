@@ -1,13 +1,14 @@
 import React from 'react';
 import MovieCard from '../MovieCard/MovieCard';
+import Styles from "./MovieCardContainer.module.css";
 
 const MovieCardContainer = ( { movies } ) => {
   return (
-    <>
-      { movies.length && (
-        <MovieCard movie={ movies[ 0 ] } />
-      ) }
-    </>
+    <div className={ Styles[ 'movies-container' ] }>
+      { movies.length && movies.map( ( movie, index ) => (
+        <MovieCard movie={ movie } key={ index } />
+      ) ) }
+    </div>
   );
 };
 
