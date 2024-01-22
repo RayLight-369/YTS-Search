@@ -5,7 +5,8 @@ div.card {
   width: fit-content;
   height: 500px;
   width: 300px;
-  box-shadow: 0px 0px 19px rgba(0, 0, 0, .8);
+  /* box-shadow: 0px 0px 19px rgba(0, 0, 0, .8); */
+  filter: drop-shadow(8px 4px 142.6px rgba(228, 183, 255, 0.20));
   position: relative;
   z-index: 10;
 }
@@ -23,10 +24,11 @@ div.card div.image {
   height: 100%;
   position: absolute;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #02100E 72.83%, #010A0A 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(12, 2, 16, 1) 72.83%, rgba(7, 1, 10, 1) 100%);
 }
 
 div.card div.image img {
+  background: var(--accent-color);
   width: 100%;
   position: relative;
   z-index: -1;
@@ -92,7 +94,7 @@ p.genre {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #e7fff7;
+  color: #f3e7ff;
 }
 
 div.summary-lang {
@@ -144,10 +146,10 @@ a.play {
   font-size: 10px;
   padding: 6px 12px;
   outline: none;
-  border: 1px solid #83E993;
+  border: 1px solid var(--accent-color);
   background: none;
   border-radius: 2px;
-  color: #83E993;
+  color: var(--accent-color);
 }
 
 button.bm {

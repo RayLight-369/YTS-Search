@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import Styles from "./SearchPage.module.css";
 import { AnimatePresence, motion } from "framer-motion";
 import MovieCardContainer from '../../Components/MovieCardContainer/MovieCardContainer';
@@ -7,47 +7,74 @@ import MovieCardContainer from '../../Components/MovieCardContainer/MovieCardCon
 const SearchPage = () => {
   const [ input, setInput ] = useState( "" );
   const [ movies, setMovies ] = useState( [] );
+  const [ pending, setPending ] = useState( false );
+  const [ fetchMore, setFetchMore ] = useState( false );
+
+  async function fetchMovies ( { page = undefined, Controller } ) {
+
+    if ( !input.trim().length && !fetchMore ) {
+      setMovies( [] );
+      return;
+    };
+
+    try {
+
+      const reponse = await fetch( `https://yts.mx/api/v2/list_movies.json?query_term=${ input }${ page ? "&page=" + page : "" }`, {
+        signal: Controller.signal
+      } );
+
+      const body = await reponse.json();
+
+      if ( reponse.ok ) {
+        if ( body.data?.movie_count - movies.length > 0 ) {
+          setMovies( prev => [ ...prev, ...body.data.movies ] );
+          setPending( true );
+        } else {
+          setPending( false );
+        }
+      }
+
+      console.log( body );
+
+    } catch ( e ) {
+      if ( !Controller.signal.aborted ) {
+        console.log( e );
+      }
+    } finally {
+      setFetchMore( false );
+    }
+  };
+
 
   useEffect( () => {
 
     const Controller = new AbortController();
 
-    async function fetchMovies () {
-
-      if ( !input.trim().length ) {
-        setMovies( [] );
-        return;
-      };
-
-      try {
-
-        const reponse = await fetch( `https://yts.mx/api/v2/list_movies.json?query_term=${ input }`, {
-          signal: Controller.signal
-        } );
-
-        const body = await reponse.json();
-
-        if ( reponse.ok ) {
-          setMovies( body.data.movies );
-        }
-
-        console.log( body );
-
-      } catch ( e ) {
-        if ( !Controller.signal.aborted ) {
-          console.log( e );
-        }
-      }
-    };
-
-    fetchMovies();
+    fetchMovies( { Controller } );
 
     return () => Controller.abort();
 
   }, [ input ] );
 
+
+
+  useEffect( () => {
+
+    const Controller = new AbortController();
+
+    if ( fetchMore && movies.length ) {
+
+      fetchMovies( { Controller, page: ( movies.length / 20 ) + 1 } );
+
+    }
+
+    return () => Controller.abort();
+
+  }, [ fetchMore ] );
+
   return (
-    <AnimatePresence mode='popLayout'>
+    // <AnimatePresence mode='popLayout'>
+    <>
       <div className={ Styles.overlay }></div>
       <div className={ Styles.container }>
         <div className={ Styles.hero }>
@@ -60,10 +87,16 @@ const SearchPage = () => {
         </div>
         <div className={ Styles.movies }>
           <MovieCardContainer movies={ movies } />
+          { pending && input.trim().length && (
+            <motion.button whileHover={ { filter: "saturate(.7)", scale: .9 } } transition={ { type: "spring" } } type='button' className={ Styles.load_more } onClick={ () => {
+              setFetchMore( true );
+            } }>Load More</motion.button>
+          ) }
         </div>
       </div>
-    </AnimatePresence>
+    </>
+    // </AnimatePresence>
   );
 };
 
-export default SearchPage;
+export default memo( SearchPage );

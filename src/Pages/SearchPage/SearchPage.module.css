@@ -1,5 +1,5 @@
 div.overlay {
-  background: linear-gradient(rgb(12, 2, 2, .8), rgb(12, 2, 2, .8)), url("../../Assets/Imgs/bg.jpg");
+  background: linear-gradient(rgba(11, 3, 21, 0.8), rgba(11, 3, 21, 0.8)), url("../../Assets/Imgs/bg.png");
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -44,14 +44,14 @@ p.punchline::before {
   top: 10px;
   width: 130px;
   height: 30px;
-  background: #33c530af;
+  background: var(--accent-color);
   filter: blur(50px);
 }
 
 p.note {
   font-family: quicksand;
   font-size: 12.8px;
-  color: rgb(182, 201, 182);
+  color: #E9D8FF;
 }
 
 div.inputs {
@@ -63,11 +63,10 @@ div.inputs {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  --inherited-color: #53b870;
 }
 
 div.inputs input {
-  border: 2px solid var(--inherited-color);
+  border: 1.5px solid var(--accent-color);
   background: none;
   outline: none;
   width: 100%;
@@ -80,7 +79,7 @@ div.inputs input {
 }
 
 div.inputs input::placeholder {
-  color: #a3c9a9;
+  color: #D5BBEF;
 }
 
 div.inputs button {
@@ -91,10 +90,31 @@ div.inputs button {
   width: 44px;
   border-radius: 50px;
   right: 3.19px;
-  background-color: var(--inherited-color);
+  background-color: var(--accent-color);
   background-image: url("../../Assets/Imgs/magnifying_glass.svg");
   background-position: center;
   background-size: 14px;
   background-repeat: no-repeat;
+}
 
+div.movies {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button.load_more {
+  position: relative;
+  padding: 8px 24px;
+  width: 120px;
+  outline: none;
+  border: none;
+  background: var(--accent-color);
+  color: #1a1221;
+  border-radius: 5px;
+  top: 55px;
+  /* is margin wali line ko mazeed designing ke wakt remove karna hai */
+  margin-bottom: 85px;
+  /* display: block; */
 }

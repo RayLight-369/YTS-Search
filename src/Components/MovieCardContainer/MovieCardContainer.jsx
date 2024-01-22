@@ -30,7 +30,7 @@ const MovieCardContainer = ( { movies } ) => {
     >
       { movies?.length ? (
         movies.map( ( movie, index ) => (
-          <MovieCard movie={ movie } key={ index + movie.title } variants={ variants } />
+          <MovieCard movie={ movie } key={ index } variants={ variants } />
         ) )
       ) : (
         <p>No Movies :(</p>

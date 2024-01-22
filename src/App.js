@@ -4,16 +4,19 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 import SearchPage from './Pages/SearchPage/SearchPage';
 import HomePage from './Pages/HomePage/HomePage';
+import { AnimatePresence } from 'framer-motion';
 
 function App () {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={ <Navbar /> }>
-          <Route index path='/' element={ <HomePage /> } />
-          <Route path='/search' element={ <SearchPage /> } />
-        </Route>
-      </Routes>
+      <AnimatePresence mode='wait'>
+        <Routes>
+          <Route path='/' element={ <Navbar /> }>
+            <Route index path='/' element={ <HomePage /> } />
+            <Route path='/search' element={ <SearchPage /> } />
+          </Route>
+        </Routes>
+      </AnimatePresence>
     </BrowserRouter>
   );
 }
