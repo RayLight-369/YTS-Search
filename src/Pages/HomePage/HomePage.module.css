@@ -40,7 +40,7 @@ div.hero {
 }
 
 p.p1 {
-  font-size: 105px;
+  font-size: max(7.6vw, 50px);
   position: relative;
 }
 
@@ -62,7 +62,7 @@ div.d2 {
 p.description {
   width: 250px;
   font-size: 12px;
-  line-height: 180%;
+  line-height: 176%;
   font-family: Quicksand;
   color: #fff;
   position: relative;
@@ -80,7 +80,7 @@ p.description::before {
 }
 
 p.p2 {
-  font-size: 105px;
+  font-size: max(7.6vw, 50px);
 }
 
 div.links {
