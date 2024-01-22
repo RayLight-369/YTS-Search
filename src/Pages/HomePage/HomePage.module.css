@@ -90,19 +90,16 @@ div.links {
   z-index: 100;
   bottom: 50px;
   left: 50px;
-  gap: 17px;
+  gap: 25px;
 }
 
-button.link {
-  width: 25px;
-  height: 25px;
-  background: none;
-  border: none;
-  outline: none;
+a.link {
+  width: 15px;
+  height: 15px;
   cursor: pointer;
 }
 
-button.link img {
-  width: 13px;
+a.link img {
+  width: 100%;
   height: auto;
 }

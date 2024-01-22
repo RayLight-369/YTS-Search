@@ -47,6 +47,6 @@ header.header nav.nav a.active::before {
 }
 
 header.header div.logo img {
-  width: 61px;
+  width: 58px;
   height: auto;
 }

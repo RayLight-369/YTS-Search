@@ -1,10 +1,7 @@
 import React, { memo } from 'react';
 import Styles from "./HomePage.module.css";
 import { AnimatePresence, motion } from 'framer-motion';
-import linkedin from "../../Assets/Imgs/linkedin.png";
-import x from "../../Assets/Imgs/x.png";
-import fb from "../../Assets/Imgs/fb.png";
-import ig from "../../Assets/Imgs/ig.png";
+import { SocialLionks } from '../../Constants';
 
 const HomePage = () => {
 
@@ -14,14 +11,16 @@ const HomePage = () => {
     exit: { y: 10, opacity: 0 }
   };
 
+
+
   let socialLinksVariants = {
     initial: {
-      x: -30,
-      opacity: 0
+      x: -10,
+      // opacity: 0
     },
     animate: {
       x: 0,
-      opacity: 1,
+      // opacity: 1,
     }
   };
 
@@ -42,18 +41,11 @@ const HomePage = () => {
           </motion.div>
         </motion.div>
         <motion.div className={ Styles[ "links" ] } variants={ socialLinksVariants } animate="animate" initial="initial" transition={ { staggerChildren: .2, duration: 1 } }>
-          <motion.button type='button' className={ Styles[ 'link' ] } variants={ socialLinksVariants }>
-            <img src={ linkedin } alt="" />
-          </motion.button>
-          <motion.button type='button' className={ Styles[ 'link' ] } variants={ socialLinksVariants }>
-            <img src={ x } alt="" />
-          </motion.button>
-          <motion.button type='button' className={ Styles[ 'link' ] } variants={ socialLinksVariants }>
-            <img src={ fb } alt="" />
-          </motion.button>
-          <motion.button type='button' className={ Styles[ 'link' ] } variants={ socialLinksVariants }>
-            <img src={ ig } alt="" />
-          </motion.button>
+          { SocialLionks.map( ( social, index ) => (
+            <motion.a href={ social.link } target='_blank' className={ Styles[ 'link' ] } variants={ socialLinksVariants } whileHover={ { scale: 1.4 } }>
+              <img src={ social.src } alt="" />
+            </motion.a>
+          ) ) }
         </motion.div>
       </section>
     </AnimatePresence>
