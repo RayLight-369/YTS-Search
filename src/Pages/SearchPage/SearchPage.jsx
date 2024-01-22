@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import Styles from "./MainPage.module.css";
+import Styles from "./SearchPage.module.css";
 import { AnimatePresence, motion } from "framer-motion";
 import MovieCardContainer from '../../Components/MovieCardContainer/MovieCardContainer';
 // import MG from "../../Assets/Imgs/magnifying_glass.svg";
 
-const MainPage = () => {
+const SearchPage = () => {
   const [ input, setInput ] = useState( "" );
   const [ movies, setMovies ] = useState( [] );
 
@@ -66,4 +66,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default SearchPage;

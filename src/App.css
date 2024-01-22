@@ -32,6 +32,22 @@
   src: url("../src/Assets/Fonts/Alata.ttf");
 }
 
+@font-face {
+  font-family: Poppins;
+  src: url("../src/Assets/Fonts/Poppins-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Poppins;
+  src: url("../src/Assets/Fonts/Poppins-Light.ttf");
+  font-weight: 300;
+}
+
+:root {
+  --accent-color: #C891FF;
+}
+
 body {
   width: 100vw;
   height: 100vh;
