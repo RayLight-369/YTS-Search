@@ -19,6 +19,10 @@ a.cover {
   display: block;
 }
 
+/* a.cover:hover{
+  transform: scale(1.1);
+} */
+
 div.card div.image {
   width: 100%;
   height: 100%;

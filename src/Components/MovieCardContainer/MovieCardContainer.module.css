@@ -1,5 +1,6 @@
 div.movies-container {
   display: flex;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   width: calc(100vw - 50px);
   height: auto;

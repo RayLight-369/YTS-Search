@@ -50,3 +50,26 @@ header.header div.logo img {
   width: 58px;
   height: auto;
 }
+
+
+
+
+
+@media (max-width: 768px){
+  header.header{
+    padding: 12px 20px;
+  }
+
+  header.header nav.nav{
+    position: relative;
+    left: -8px;
+  }
+
+  header.header nav.nav a{
+    font-size: 13px;
+  }
+
+  header.header div.logo img{
+    width: 50px;
+  }
+}
