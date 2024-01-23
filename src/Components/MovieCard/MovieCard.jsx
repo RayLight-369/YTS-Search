@@ -9,7 +9,16 @@ import { motion } from "framer-motion";
 const MovieCard = ({ movie, variants }) => {
   return (
     <motion.a href={movie.url} className={Styles.cover} variants={variants}>
-      <motion.div className={Styles.card} whileHover={{ scale: 1.03 }}>
+      <motion.div
+        className={Styles.card}
+        transition={{
+          delay: 0,
+          duration: 0.3,
+          type: "spring",
+          damping: 7,
+        }}
+        whileHover={{ scale: 1.04 }}
+      >
         <div className={Styles.image}>
           <img src={movie["large_cover_image"]} alt="" />
         </div>

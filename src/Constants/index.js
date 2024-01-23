@@ -29,7 +29,7 @@ export const NavbarLinks = [
     link: "/"
   },
   {
-    name: "Search",
-    link: "/search"
+    name: "Movies",
+    link: "/movies"
   }
 ];

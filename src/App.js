@@ -13,7 +13,7 @@ function App () {
         <Routes>
           <Route path='/' element={ <Navbar /> }>
             <Route index path='/' element={ <HomePage /> } />
-            <Route path='/search' element={ <SearchPage /> } />
+            <Route path='/movies' element={ <SearchPage /> } />
           </Route>
         </Routes>
       </AnimatePresence>
