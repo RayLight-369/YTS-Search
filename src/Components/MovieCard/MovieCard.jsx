@@ -13,9 +13,9 @@ const MovieCard = ({ movie, variants }) => {
         className={Styles.card}
         transition={{
           delay: 0,
-          duration: 0.3,
+          duration: 0.2,
           type: "spring",
-          damping: 7,
+          damping: 9,
         }}
         whileHover={{ scale: 1.04 }}
       >

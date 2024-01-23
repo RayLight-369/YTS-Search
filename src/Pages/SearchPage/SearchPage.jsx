@@ -4,6 +4,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import MovieCardContainer from "../../Components/MovieCardContainer/MovieCardContainer";
 // import MG from "../../Assets/Imgs/magnifying_glass.svg";
 
+const Inputs = memo(({ input, setInput }) => {
+  return (
+    <div className={Styles.inputs}>
+      <input
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Search Movies"
+      />
+      <motion.button whileHover={{ width: "70px" }} type="button" />
+    </div>
+  );
+});
+
 const SearchPage = () => {
   const [input, setInput] = useState("");
   const [movies, setMovies] = useState([]);
@@ -72,15 +86,7 @@ const SearchPage = () => {
       <div className={Styles.container}>
         <div className={Styles.hero}>
           <p className={Styles.punchline}>Download Movies: HD smallest size</p>
-          <div className={Styles.inputs}>
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Search Movies"
-            />
-            <motion.button whileHover={{ width: "70px" }} type="button" />
-          </div>
+          <Inputs input={input} setInput={setInput} />
           <p className={Styles.note}>
             Here you can browse and download movies in excellent 720p, 1080p,
             2160p 4K and 3D quality, all at the smallest file size.
