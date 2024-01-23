@@ -8,7 +8,11 @@ import { motion } from "framer-motion";
 
 const MovieCard = ({ movie, variants }) => {
   return (
-    <motion.a href={movie.url} className={Styles.cover} variants={variants}>
+    <motion.a
+      href={`https://www.imdb.com/title/${movie.imdb_code}`}
+      className={Styles.cover}
+      variants={variants}
+    >
       <motion.div
         className={Styles.card}
         transition={{
