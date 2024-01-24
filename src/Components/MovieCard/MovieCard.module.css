@@ -60,6 +60,7 @@ div.card div.image div.torrents a.torrent {
   color: #10041c;
   border-radius: 3px;
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.673));
+  transition: 150ms;
 }
 
 div.card div.image div.torrents a.torrent .download {
