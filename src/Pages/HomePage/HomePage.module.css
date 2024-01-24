@@ -110,14 +110,14 @@ a.link img {
     width: 90%;
     position: relative;
     left: 0;
-    top: -25px;
+    top: -29px;
     text-align: center;
   }
 
   div.d2 {
     display: flex;
     flex-direction: column;
-    gap: 19px;
+    gap: 21px;
     position: relative;
     top: 15px;
   }
@@ -134,7 +134,7 @@ a.link img {
   p.p1 {
     font-size: 18vw;
     line-height: 125%;
-    top: -10px;
+    top: -20px;
   }
 
   p.p2 {
@@ -155,6 +155,6 @@ a.link img {
     flex-direction: row;
     justify-content: center;
     position: relative;
-    bottom: 80px;
+    bottom: 100px;
   }
 }

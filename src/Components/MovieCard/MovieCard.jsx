@@ -1,13 +1,21 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import Styles from "./MovieCard.module.css";
 import { ReactComponent as Star } from "../../Assets/Imgs/Star.svg";
 import { ReactComponent as Language } from "../../Assets/Imgs/language.svg";
 import { ReactComponent as Download } from "../../Assets/Imgs/download.svg";
+import { ReactComponent as Options } from "../../Assets/Imgs/options.svg";
 // import { ReactComponent as Bookmark } from '../../Assets/Imgs/bookmark.svg';
 import { ReactComponent as Play } from "../../Assets/Imgs/play.svg";
 import { motion } from "framer-motion";
 
 const MovieCard = ( { movie, variants } ) => {
+
+  // const [ isMobile, setIsMobile ] = useState( true );
+
+  // useState( () => {
+
+  // })
+
   return (
     <motion.a
       href={ `https://www.imdb.com/title/${ movie.imdb_code }` }
