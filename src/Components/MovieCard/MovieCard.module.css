@@ -48,7 +48,7 @@ div.card div.image div.torrents {
   z-index: 10000;
 }
 
-div.card div.image div.torrents a.torrent{
+div.card div.image div.torrents a.torrent {
   padding: 5px 10px;
   font-size: 12px;
   text-decoration: none;
@@ -64,11 +64,18 @@ div.card div.image div.torrents a.torrent{
   transition: 250ms;
 }
 
-div.card div.image div.torrents a.torrent:hover{
+div.card div.image div.torrents a.torrent .download {
+  width: 12px;
+  position: relative;
+  left: -5px;
+  height: auto;
+}
+
+div.card div.image div.torrents a.torrent:hover {
   transform: scale(.9);
 }
 
-div.card:hover div.image div.torrents a.torrent{
+div.card:hover div.image div.torrents a.torrent {
   opacity: 1;
   top: 0;
 }
@@ -192,7 +199,7 @@ a.play {
   transition: 200ms;
 }
 
-a.play:hover{
+a.play:hover {
   transform: scale(.9);
 }
 
