@@ -11,6 +11,7 @@ const MovieCard = ({ movie, variants }) => {
     <motion.a
       href={`https://www.imdb.com/title/${movie.imdb_code}`}
       className={Styles.cover}
+      target="_blank"
       variants={variants}
     >
       <motion.div
@@ -53,14 +54,15 @@ const MovieCard = ({ movie, variants }) => {
             </p>
           </div>
           <div className={Styles["trailer-bookmark"]}>
-            <a
+            <button
               onClick={(e) => e.stopPropagation()}
+              target="_blank"
               href={`https://www.youtube.com/embed/${movie["yt_trailer_code"]}?rel=0&wmode=transparent&border=0&autoplay=1&iv_load_policy=3`}
               className={Styles.play}
             >
               <Play className={Styles.play} />
               <span>Watch Trailer</span>
-            </a>
+            </button>
             {/* <button type='button' className={ Styles.bm }>
               <Bookmark className={ Styles.bookmark } />
             </button> */}

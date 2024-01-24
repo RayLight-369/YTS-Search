@@ -141,7 +141,7 @@ div.trailer-bookmark {
   top: 23px;
 }
 
-a.play {
+button.play {
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -154,6 +154,11 @@ a.play {
   background: none;
   border-radius: 2px;
   color: var(--accent-color);
+  transition: 200ms;
+}
+
+button.play:hover{
+  transform: scale(.9);
 }
 
 button.bm {
