@@ -38,7 +38,6 @@ div.hero {
   font-weight: 300;
   position: relative;
   left: -20px;
-  text-align: center;
 }
 
 p.p1 {
@@ -107,38 +106,46 @@ a.link img {
 }
 
 @media (max-width: 820px) {
-  div.hero{
+  div.hero {
     width: 90%;
     position: relative;
     left: 0;
+    text-align: center;
   }
-  div.d2{
+
+  div.d2 {
     display: flex;
     flex-direction: column;
     gap: 15px;
     position: relative;
     top: 15px;
   }
-  p.description{
+
+  p.description {
     width: 40vw;
     font-size: 2.5vw;
   }
-  p.description::before{
+
+  p.description::before {
     width: 25px;
     height: 2.4px;
     left: -50px;
   }
-  p.p1{
+
+  p.p1 {
     font-size: 9vw;
   }
-  p.p2{
+
+  p.p2 {
     font-size: 9vw;
     width: 100%;
     text-align: center;
   }
-  p.p1::before{
+
+  p.p1::before {
     transform: scale(.6);
   }
+
   div.links {
     z-index: 100;
     bottom: 40px;
