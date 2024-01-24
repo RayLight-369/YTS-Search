@@ -20,9 +20,6 @@ const MovieCard = ( { movie, variants } ) => {
     animate: {
       y: 0,
       opacity: 1,
-      transition: {
-        duration: .07,
-      }
     },
     exit: {
       y: 20,
@@ -48,7 +45,7 @@ const MovieCard = ( { movie, variants } ) => {
         className={ Styles.card }
         transition={ {
           delay: 0,
-          duration: 0.2,
+          // duration: 0.2,
           type: "spring",
           damping: 9,
         } }
@@ -62,16 +59,16 @@ const MovieCard = ( { movie, variants } ) => {
               e.preventDefault();
               setShowOptions( prev => !prev );
             } } />
-            <AnimatePresence mode="wait">
-              <motion.div className={ Styles.options } initial="initial" animate="animate" exit="exit" variants={ variants2 } transition={ { staggerChildren: .8 } }>
+            <motion.div className={ Styles.options } initial="initial" animate="animate" exit="exit" variants={ variants2 }>
+              <AnimatePresence mode="wait">
                 { showOptions && movie?.torrents.map( ( torrent, index ) => (
-                  <motion.a variants={ variants2 } initial="initial" animate="animate" exit="exit" href={ torrent.url } key={ index } target="_blank" className={ Styles.torrent }>
+                  <motion.a variants={ variants2 } initial="initial" animate="animate" exit="exit" transition={ { delay: index * .1 } } href={ torrent.url } key={ index } target="_blank" className={ Styles.torrent }>
                     <Download className={ Styles.download } />
                     { torrent.quality }
                   </motion.a>
                 ) ) }
-              </motion.div>
-            </AnimatePresence>
+              </AnimatePresence>
+            </motion.div>
           </div>
         </div>
         <div className={ Styles.content }>
