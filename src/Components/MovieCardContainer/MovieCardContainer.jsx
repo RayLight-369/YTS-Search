@@ -40,13 +40,10 @@ const MovieCardContainer = ({ movies }) => {
       animate="animate"
       transition={transition}
     >
-      {movies?.length ? (
+      {movies?.length &&
         movies.map((movie, index) => (
           <MovieCard movie={movie} key={index} variants={variants} />
-        ))
-      ) : (
-        <p>No Movies :(</p>
-      )}
+        ))}
     </motion.div>
   );
 };

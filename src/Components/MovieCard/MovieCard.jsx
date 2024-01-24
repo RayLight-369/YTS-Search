@@ -26,6 +26,13 @@ const MovieCard = ({ movie, variants }) => {
       >
         <div className={Styles.image}>
           <img src={movie["large_cover_image"]} alt="" />
+          <div className={Styles.torrents}>
+            {movie?.torrents.map((torrent, index) => (
+              <a href={torrent.url} target="_blank" className={Styles.torrent}>
+                {torrent.quality}
+              </a>
+            ))}
+          </div>
         </div>
         <div className={Styles.content}>
           <div className={Styles["title-rating-genre"]}>
@@ -54,7 +61,7 @@ const MovieCard = ({ movie, variants }) => {
             </p>
           </div>
           <div className={Styles["trailer-bookmark"]}>
-            <button
+            <a
               onClick={(e) => e.stopPropagation()}
               target="_blank"
               href={`https://www.youtube.com/embed/${movie["yt_trailer_code"]}?rel=0&wmode=transparent&border=0&autoplay=1&iv_load_policy=3`}
@@ -62,7 +69,7 @@ const MovieCard = ({ movie, variants }) => {
             >
               <Play className={Styles.play} />
               <span>Watch Trailer</span>
-            </button>
+            </a>
             {/* <button type='button' className={ Styles.bm }>
               <Bookmark className={ Styles.bookmark } />
             </button> */}
