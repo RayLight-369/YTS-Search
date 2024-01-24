@@ -122,22 +122,21 @@ a.link img {
   }
 
   p.description {
-    width: 40vw;
-    font-size: 2.5vw;
+    width: 70vw;
+    font-size: 3.6vw;
   }
 
   p.description::before {
-    width: 25px;
-    height: 2.4px;
-    left: -50px;
+    display: none;
   }
 
   p.p1 {
-    font-size: 9vw;
+    font-size: 18vw;
+    line-height: 125%;
   }
 
   p.p2 {
-    font-size: 9vw;
+    font-size: 15vw;
     width: 100%;
     text-align: center;
   }
