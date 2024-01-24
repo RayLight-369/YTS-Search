@@ -3,12 +3,32 @@ import Styles from "./MovieCard.module.css";
 import { ReactComponent as Star } from "../../Assets/Imgs/Star.svg";
 import { ReactComponent as Language } from "../../Assets/Imgs/language.svg";
 import { ReactComponent as Download } from "../../Assets/Imgs/download.svg";
-import { ReactComponent as Options } from "../../Assets/Imgs/options.svg";
+import Options from "../../Assets/Imgs/options.svg";
 // import { ReactComponent as Bookmark } from '../../Assets/Imgs/bookmark.svg';
 import { ReactComponent as Play } from "../../Assets/Imgs/play.svg";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const MovieCard = ( { movie, variants } ) => {
+
+  const [ showOptions, setShowOptions ] = useState( false );
+
+  const variants2 = {
+    initial: {
+      y: -50,
+      opacity: 0
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: .07,
+      }
+    },
+    exit: {
+      y: 20,
+      opacity: 0
+    }
+  };
 
   // const [ isMobile, setIsMobile ] = useState( true );
 
@@ -22,6 +42,7 @@ const MovieCard = ( { movie, variants } ) => {
       className={ Styles.cover }
       target="_blank"
       variants={ variants }
+      onClick={ e => e.stopPropagation() }
     >
       <motion.div
         className={ Styles.card }
@@ -36,12 +57,21 @@ const MovieCard = ( { movie, variants } ) => {
         <div className={ Styles.image }>
           <img src={ movie[ "large_cover_image" ] } alt="" />
           <div className={ Styles.torrents }>
-            { movie?.torrents.map( ( torrent, index ) => (
-              <a href={ torrent.url } key={ index } target="_blank" className={ Styles.torrent }>
-                <Download className={ Styles.download } />
-                { torrent.quality }
-              </a>
-            ) ) }
+            <img src={ Options } className={ Styles.menu } onClick={ ( e ) => {
+              e.stopPropagation();
+              e.preventDefault();
+              setShowOptions( prev => !prev );
+            } } />
+            <AnimatePresence mode="wait">
+              <motion.div className={ Styles.options } initial="initial" animate="animate" exit="exit" variants={ variants2 } transition={ { staggerChildren: .8 } }>
+                { showOptions && movie?.torrents.map( ( torrent, index ) => (
+                  <motion.a variants={ variants2 } initial="initial" animate="animate" exit="exit" href={ torrent.url } key={ index } target="_blank" className={ Styles.torrent }>
+                    <Download className={ Styles.download } />
+                    { torrent.quality }
+                  </motion.a>
+                ) ) }
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
         <div className={ Styles.content }>
