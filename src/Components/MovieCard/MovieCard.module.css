@@ -80,6 +80,10 @@ div.card div.image div.torrents div.options a.torrent {
   transition: 150ms;
 }
 
+div.card div.image div.torrents div.options a.torrent:hover {
+  transform: scale(.9);
+}
+
 div.card div.image div.torrents a.torrent .download {
   width: 12px;
   position: relative;
