@@ -29,7 +29,7 @@ const MovieCard = ( { movie, variants } ) => {
           <img src={ movie[ "large_cover_image" ] } alt="" />
           <div className={ Styles.torrents }>
             { movie?.torrents.map( ( torrent, index ) => (
-              <a href={ torrent.url } target="_blank" className={ Styles.torrent }>
+              <a href={ torrent.url } key={ index } target="_blank" className={ Styles.torrent }>
                 <Download className={ Styles.download } />
                 { torrent.quality }
               </a>
