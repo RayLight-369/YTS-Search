@@ -51,9 +51,11 @@ div.card div.image div.torrents .menu {
   z-index: 9999;
   cursor: pointer;
   background: none;
-  width: 8px;
+  width: 32px;
+  padding: 12px;
   position: absolute;
-  left: 0;
+  left: -10px;
+  top: -10px;
   filter: drop-shadow(0 0 8px black);
 }
 
@@ -63,19 +65,20 @@ div.card div.image div.torrents div.options {
   gap: 3px;
   position: absolute;
   left: 20px;
-  width: 100px;
+  width: max-content;
   text-align: center;
 }
 
 div.card div.image div.torrents div.options a.torrent {
-  padding: 5px 10px;
+  padding: 8px 10px;
   font-size: 12px;
   text-decoration: none;
-  border: 1px solid #868289;
+  display: flex;
+  justify-content: space-between;
   outline: none;
-  background: #c0a2de;
-  color: #10041c;
-  border-radius: 3px;
+  background: #ffffff;
+  color: #27123c;
+  border-radius: 1px;
   /* filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.673)); */
   transition: 150ms;
 }

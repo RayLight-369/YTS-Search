@@ -10,6 +10,12 @@ div.overlay {
   /* background-position: fixed; */
 }
 
+div.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 div.container {
   backdrop-filter: blur(9px);
   width: 100%;
@@ -122,22 +128,17 @@ button.load_more {
   /* display: block; */
 }
 
+@media (max-width: 768px) {
 
-
-
-
-
-@media (max-width: 768px){
-
-  div.hero{
+  div.hero {
     height: 85vh;
   }
 
-  p.punchline{
+  p.punchline {
     font-size: 32px;
   }
 
-  p.note{
+  p.note {
     font-size: 10px;
   }
 }

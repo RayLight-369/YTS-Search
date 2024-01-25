@@ -2,6 +2,7 @@ import { useEffect, useState, memo } from "react";
 import Styles from "./SearchPage.module.css";
 import { AnimatePresence, motion } from "framer-motion";
 import MovieCardContainer from "../../Components/MovieCardContainer/MovieCardContainer";
+import Modal from "../../Components/Modal/Modal";
 // import MG from "../../Assets/Imgs/magnifying_glass.svg";
 
 const Inputs = memo( ( { input, setInput, handleSearch = () => { } } ) => {
@@ -28,6 +29,7 @@ const SearchPage = () => {
   const [ movies, setMovies ] = useState( [] );
   const [ pending, setPending ] = useState( false );
   const [ fetchMore, setFetchMore ] = useState( false );
+  const [ trailer, setTrailer ] = useState( { show: false, src: "" } );
 
   async function fetchMovies ( { Controller } ) {
     if ( !input.trim().length ) {
@@ -120,6 +122,13 @@ const SearchPage = () => {
     // <AnimatePresence mode='popLayout'>
     <>
       <div className={ Styles.overlay }></div>
+      <AnimatePresence mode="wait">
+        { trailer.show && (
+          <Modal handleClose={ () => setTrailer( { show: false, src: "" } ) } customClassName={ Styles.modal }>
+            <iframe src={ trailer.src } width={ 640 } height={ 360 } style={ { border: "none" } } />
+          </Modal>
+        ) }
+      </AnimatePresence>
       <div className={ Styles.container }>
         <div className={ Styles.hero }>
           <p className={ Styles.punchline }>Download Movies: HD smallest size</p>
@@ -137,7 +146,7 @@ const SearchPage = () => {
           {/* YTS Movies Torrents. */ }
         </div>
         <div className={ Styles.movies }>
-          <MovieCardContainer movies={ movies } />
+          <MovieCardContainer setTrailer={ setTrailer } movies={ movies } />
           { pending && input.trim().length && (
             <motion.button
               whileHover={ { filter: "saturate(.7)", scale: 0.9 } }
