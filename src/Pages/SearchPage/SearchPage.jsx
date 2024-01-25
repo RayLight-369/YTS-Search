@@ -4,7 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import MovieCardContainer from "../../Components/MovieCardContainer/MovieCardContainer";
 import Modal from "../../Components/Modal/Modal";
 import RequestForm from "../../Components/RequestForm/RequestForm";
+import Footer from "../../Components/Footer/Footer";
 // import MG from "../../Assets/Imgs/magnifying_glass.svg";
+
 
 const Inputs = memo( ( { input, setInput, handleSearch = () => { } } ) => {
   return (
@@ -31,6 +33,7 @@ const SearchPage = () => {
   const [ pending, setPending ] = useState( false );
   const [ fetchMore, setFetchMore ] = useState( false );
   const [ trailer, setTrailer ] = useState( { show: false, src: "" } );
+  const [ showRequest, setShowRequest ] = useState( true );
 
   async function fetchMovies ( { Controller } ) {
     // if ( !input.trim().length ) {
@@ -124,6 +127,8 @@ const SearchPage = () => {
     return () => Controller.abort();
   }, [ fetchMore ] );
 
+  const handleClose = () => setShowRequest( false );
+
   return (
     // <AnimatePresence mode='popLayout'>
     <>
@@ -168,7 +173,14 @@ const SearchPage = () => {
           ) }
         </div>
       </div>
-      <RequestForm />
+      <Footer handleRequest={ () => setShowRequest( true ) } />
+      <AnimatePresence mode="wait">
+        { showRequest && (
+          <Modal handleClose={ handleClose }>
+            <RequestForm handleClose={ handleClose } />
+          </Modal>
+        ) }
+      </AnimatePresence>
     </>
     // </AnimatePresence>
   );
