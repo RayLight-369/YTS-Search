@@ -13,7 +13,7 @@ div.overlay {
 }
 
 div.modal {
-  padding: 20px;
+  padding: 5px;
   min-height: fit-content;
   max-height: 90%;
   width: fit-content;
