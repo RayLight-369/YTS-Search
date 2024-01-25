@@ -3,6 +3,7 @@ import Styles from "./SearchPage.module.css";
 import { AnimatePresence, motion } from "framer-motion";
 import MovieCardContainer from "../../Components/MovieCardContainer/MovieCardContainer";
 import Modal from "../../Components/Modal/Modal";
+import RequestForm from "../../Components/RequestForm/RequestForm";
 // import MG from "../../Assets/Imgs/magnifying_glass.svg";
 
 const Inputs = memo( ( { input, setInput, handleSearch = () => { } } ) => {
@@ -32,10 +33,15 @@ const SearchPage = () => {
   const [ trailer, setTrailer ] = useState( { show: false, src: "" } );
 
   async function fetchMovies ( { Controller } ) {
-    if ( !input.trim().length ) {
-      setMovies( [] );
-      return;
-    }
+    // if ( !input.trim().length ) {
+    //   await fetch(
+    //     `https://yts.mx/api/v2/list_movies.json?limit=6`,
+    //     {
+    //       signal: Controller?.signal,
+    //     }
+    //   );
+    //   return;
+    // }
 
     try {
       const reponse = await fetch(
@@ -162,6 +168,7 @@ const SearchPage = () => {
           ) }
         </div>
       </div>
+      <RequestForm />
     </>
     // </AnimatePresence>
   );
