@@ -12,7 +12,7 @@ const Footer = ( { handleRequest } ) => {
             height={ 75 }
             alt='footer'
           />
-          <a className={ styles[ "email" ] } >email@gmail.com</a> {/*"href='mailto:abdulrafay.designs@gmail.com'"*/ }
+          <a className={ styles[ "email" ] } >Help</a> {"href='mailto:help@aions.co'" }
         </div>
         <div className={ styles[ "update" ] }>
           <p className={ styles[ "title" ] }>
@@ -25,7 +25,7 @@ const Footer = ( { handleRequest } ) => {
         </div>
       </div>
       <p className={ styles[ "copyright" ] }>
-        Copyright © 2024 Stooge, Inc
+        ©2023 AIONS
       </p>
     </footer>
   );
