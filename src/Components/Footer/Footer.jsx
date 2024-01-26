@@ -6,13 +6,13 @@ const Footer = ( { handleRequest } ) => {
     <footer className={ styles[ "footer" ] }>
       <div className={ styles[ "body" ] }>
         <div className={ styles[ "title" ] }>
-         <img
+          <img
             src={ require( "../../Assets/Imgs/logo.png" ) }
             width={ 250 }
             height={ 75 }
             alt='footer'
           />
-         <a class={style=["email"]}>Stooge</a>{/*href="mailto:help@aions.co"*/}
+          <a class={ styles = [ "email" ] }>Stooge</a>{/*href="mailto:help@aions.co"*/ }
         </div>
         <div className={ styles[ "update" ] }>
           <p className={ styles[ "title" ] }>
