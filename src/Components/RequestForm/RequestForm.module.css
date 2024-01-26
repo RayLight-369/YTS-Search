@@ -61,7 +61,9 @@ div.shows-message label textarea#shows-message-input {
 }
 
 input#shows-request-input:focus ~ span,
-textarea#shows-message-input:focus ~ span {
+textarea#shows-message-input:focus ~ span,
+input#shows-request-input:not(:placeholder-shown) ~ span,
+textarea#shows-message-input:not(:placeholder-shown) ~ span {
   top: -20px;
   left: 2px;
   font-size: 10px;
