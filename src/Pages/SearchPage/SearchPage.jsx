@@ -33,7 +33,7 @@ const SearchPage = () => {
   const [ pending, setPending ] = useState( false );
   const [ fetchMore, setFetchMore ] = useState( false );
   const [ trailer, setTrailer ] = useState( { show: false, src: "" } );
-  const [ showRequest, setShowRequest ] = useState( true );
+  const [ showRequest, setShowRequest ] = useState( false );
 
   async function fetchMovies ( { Controller } ) {
     // if ( !input.trim().length ) {
