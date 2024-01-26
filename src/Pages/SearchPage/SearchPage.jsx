@@ -151,7 +151,7 @@ const SearchPage = () => {
             }
           />
           <p className={ Styles.note }>
-            Browse Movies in 720p, 1080p, 2K, 4K and 3D quality, all at the Smallest file Size.
+            Browse Movies in 720p, 1080p, 2K, 4K and 3D quality, All At Smallest file Size.
           </p>
           {/* SP Movies Torrents. */ }
         </div>
