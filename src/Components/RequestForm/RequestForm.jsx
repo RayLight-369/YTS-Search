@@ -3,7 +3,7 @@ import Styles from "./RequestForm.module.css";
 import { motion } from 'framer-motion';
 
 
-const RequestForm = ( { handleClose } ) => {
+const RequestForm = ( { handleClose, handleSubmit } ) => {
 
   const handleMsgChange = ( e ) => {
 
@@ -29,7 +29,7 @@ const RequestForm = ( { handleClose } ) => {
         </div>
       </div>
       <div className={ Styles.buttons }>
-        <button type='button' className={ Styles.requestBtn }>Request</button>
+        <button type='button' className={ Styles.requestBtn } onClick={ handleSubmit }>Request</button>
         <button type='button' className={ Styles.cancelBtn } onClick={ handleClose }>Cancel</button>
       </div>
     </div>

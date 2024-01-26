@@ -176,7 +176,7 @@ const SearchPage = () => {
       <AnimatePresence mode="wait">
         { showRequest && (
           <Modal handleClose={ handleClose }>
-            <RequestForm handleClose={ handleClose } />
+            <RequestForm handleClose={ handleClose } handleSubmit={ handleClose } />
           </Modal>
         ) }
       </AnimatePresence>
