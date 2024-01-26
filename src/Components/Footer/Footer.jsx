@@ -6,13 +6,13 @@ const Footer = ( { handleRequest } ) => {
     <footer className={ styles[ "footer" ] }>
       <div className={ styles[ "body" ] }>
         <div className={ styles[ "title" ] }>
-          <img
+         <img
             src={ require( "../../Assets/Imgs/logo.png" ) }
             width={ 250 }
             height={ 75 }
             alt='footer'
           />
-          <a className={ styles[ "email" ] } >email@gmail.com</a> {/*"href='mailto:abdulrafay.designs@gmail.com'"*/ }
+         <a class={style=["email"]}>Stooge</a>{/*href="mailto:help@aions.co"*/}
         </div>
         <div className={ styles[ "update" ] }>
           <p className={ styles[ "title" ] }>
@@ -25,7 +25,7 @@ const Footer = ( { handleRequest } ) => {
         </div>
       </div>
       <p className={ styles[ "copyright" ] }>
-        Copyright © 2024 Stooge, Inc
+        ©2023 AIONS
       </p>
     </footer>
   );
