@@ -12,7 +12,7 @@ const Footer = ( { handleRequest } ) => {
             height={ 75 }
             alt='footer'
           />
-         
+         <a class={style=["email"]}></a>{/*href="mailto:help@aions.co"*/}
         </div>
         <div className={ styles[ "update" ] }>
           <p className={ styles[ "title" ] }>
