@@ -6,13 +6,13 @@ const Footer = ( { handleRequest } ) => {
     <footer className={ styles[ "footer" ] }>
       <div className={ styles[ "body" ] }>
         <div className={ styles[ "title" ] }>
-          <img
+         <a href=mailto:"help@aions.co"> <img
             src={ require( "../../Assets/Imgs/logo.png" ) }
             width={ 250 }
             height={ 75 }
             alt='footer'
           />
-          <a className={ styles[ "email" ] } ></a> {/*"href='mailto:help@aions.co'"*/ }
+          <a className={ styles[ "email" ] } ></a> {/*"href='mailto:help@aions.co'"*/ }</a>
         </div>
         <div className={ styles[ "update" ] }>
           <p className={ styles[ "title" ] }>
@@ -25,7 +25,7 @@ const Footer = ( { handleRequest } ) => {
         </div>
       </div>
       <p className={ styles[ "copyright" ] }>
-        ©2023 <a herf="https://aions.co">AIONS</a>
+        ©2023 <a href="https://aions.co">AIONS</a>
       </p>
     </footer>
   );
