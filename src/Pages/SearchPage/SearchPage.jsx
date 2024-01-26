@@ -142,7 +142,7 @@ const SearchPage = () => {
       </AnimatePresence>
       <div className={ Styles.container }>
         <div className={ Styles.hero }>
-          <p className={ Styles.punchline }>Download Movies: HD smallest size</p>
+          <p className={ Styles.punchline }>HD Movies With Smallest Size</p>
           <Inputs
             input={ input }
             setInput={ setInput }
@@ -151,10 +151,9 @@ const SearchPage = () => {
             }
           />
           <p className={ Styles.note }>
-            Here you can browse and download movies in excellent 720p, 1080p,
-            2160p 4K and 3D quality, all at the smallest file size.
+            Browse Movies in 720p, 1080p, 2K, 4K and 3D quality, all at the Smallest file Size.
           </p>
-          {/* YTS Movies Torrents. */ }
+          {/* SP Movies Torrents. */ }
         </div>
         <div className={ Styles.movies }>
           <MovieCardContainer setTrailer={ setTrailer } movies={ movies } />
