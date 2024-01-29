@@ -129,6 +129,16 @@ button.load_more {
   /* display: block; */
 }
 
+div#videoplayer {
+  display: none;
+  position: fixed;
+  background: #000000e1;
+  width: 90%;
+  top: 0;
+  z-index: 100000;
+  left: 0;
+}
+
 @media (max-width: 768px) {
 
   div.hero {

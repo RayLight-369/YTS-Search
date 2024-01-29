@@ -9,8 +9,8 @@ import { ReactComponent as Play } from "../../Assets/Imgs/play.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import Modal from "../Modal/Modal";
 
-const MovieCard = ({ movie, variants, setTrailer }) => {
-  const [showOptions, setShowOptions] = useState(false);
+const MovieCard = ( { movie, variants, setTrailer, showPlayer, setShowPlayer } ) => {
+  const [ showOptions, setShowOptions ] = useState( false );
 
   const variants2 = {
     initial: {
@@ -43,111 +43,130 @@ const MovieCard = ({ movie, variants, setTrailer }) => {
         ) }
       </AnimatePresence> */}
       <motion.a
-        href={`https://www.imdb.com/title/${movie.imdb_code}`}
-        className={Styles.cover}
+        href={ `https://www.imdb.com/title/${ movie.imdb_code }` }
+        className={ Styles.cover }
         target="_blank"
-        variants={variants}
-        onClick={(e) => e.stopPropagation()}
+        variants={ variants }
+        onClick={ ( e ) => e.stopPropagation() }
       >
         <motion.div
-          className={Styles.card}
-          transition={{
+          className={ Styles.card }
+          transition={ {
             delay: 0,
             // duration: 0.2,
             type: "spring",
             damping: 9,
-          }}
-          whileHover={{ scale: 1.04 }}
+          } }
+          whileHover={ { scale: 1.04 } }
         >
-          <div className={Styles.image}>
-            <img src={movie["large_cover_image"]} alt="" />
-            <div className={Styles.torrents}>
+          <div className={ Styles.image }>
+            <img src={ movie[ "large_cover_image" ] } alt="" />
+            <div className={ Styles.torrents }>
               <img
-                src={Options}
-                className={Styles.menu}
-                onClick={(e) => {
+                src={ Options }
+                className={ Styles.menu }
+                onClick={ ( e ) => {
                   e.stopPropagation();
                   e.preventDefault();
-                  setShowOptions((prev) => !prev);
-                }}
+                  setShowOptions( ( prev ) => !prev );
+                } }
               />
               <motion.div
-                className={Styles.options}
+                className={ Styles.options }
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                variants={variants2}
+                variants={ variants2 }
               >
                 <AnimatePresence mode="wait">
-                  {showOptions &&
-                    movie?.torrents.map((torrent, index) => (
+                  { showOptions &&
+                    movie?.torrents.map( ( torrent, index ) => (
                       <motion.a
-                        variants={variants2}
+                        variants={ variants2 }
                         initial="initial"
                         animate="animate"
                         exit="exit"
-                        transition={{ delay: index * 0.1, duration: 0.1 }}
-                        href={torrent.url}
-                        key={index}
+                        transition={ { delay: index * 0.1, duration: 0.1 } }
+                        href={ torrent.url }
+                        key={ index }
                         target="_blank"
-                        className={Styles.torrent}
+                        className={ Styles.torrent }
                       >
-                        <Download className={Styles.download} />
-                        {`${torrent.quality} ${torrent.type} ${torrent.size}`}
+                        <Download className={ Styles.download } />
+                        { `${ torrent.quality } ${ torrent.type } ${ torrent.size }` }
                       </motion.a>
-                    ))}
+                    ) ) }
                 </AnimatePresence>
               </motion.div>
             </div>
           </div>
-          <div className={Styles.content}>
-            <div className={Styles["title-rating-genre"]}>
-              <div className={Styles["title-rating"]}>
-                <p className={Styles["title"]} title={movie.title}>
-                  {movie.title.slice(0, 20)}...
+          <div className={ Styles.content }>
+            <div className={ Styles[ "title-rating-genre" ] }>
+              <div className={ Styles[ "title-rating" ] }>
+                <p className={ Styles[ "title" ] } title={ movie.title }>
+                  { movie.title.slice( 0, 20 ) }...
                 </p>
-                <div className={Styles["rating"]}>
-                  <Star className={Styles["star"]} />
-                  <span>{`${movie.rating} / 10`}</span>
+                <div className={ Styles[ "rating" ] }>
+                  <Star className={ Styles[ "star" ] } />
+                  <span>{ `${ movie.rating } / 10` }</span>
                 </div>
               </div>
-              <div className={Styles["year-genre"]}>
-                <p className={Styles["year"]}>{movie.year}.</p>
-                <p className={Styles["genre"]}>{movie.genres.join(", ")}</p>
+              <div className={ Styles[ "year-genre" ] }>
+                <p className={ Styles[ "year" ] }>{ movie.year }.</p>
+                <p className={ Styles[ "genre" ] }>{ movie.genres.join( ", " ) }</p>
               </div>
             </div>
-            <div className={Styles["summary-lang"]}>
-              <div className={Styles["headings"]}>
-                <p className={Styles["heading"]}>Summary</p>
-                <div className={Styles["lang"]}>
-                  <Language className={Styles["lang"]} />{" "}
-                  <span>{movie.language}</span>
+            <div className={ Styles[ "summary-lang" ] }>
+              <div className={ Styles[ "headings" ] }>
+                <p className={ Styles[ "heading" ] }>Summary</p>
+                <div className={ Styles[ "lang" ] }>
+                  <Language className={ Styles[ "lang" ] } />{ " " }
+                  <span>{ movie.language }</span>
                 </div>
               </div>
-              <p className={Styles["desc"]}>
-                {movie.summary.slice(0, 100) + "..."}
+              <p className={ Styles[ "desc" ] }>
+                { movie.summary.slice( 0, 100 ) + "..." }
               </p>
             </div>
             <div
-              className={Styles["trailer-bookmark"]}
-              onClick={(e) => e.stopPropagation()}
+              className={ Styles[ "trailer-bookmark" ] }
+              onClick={ ( e ) => e.stopPropagation() }
             >
               <a
-                onClick={(e) => {
+                onClick={ ( e ) => {
                   e.stopPropagation();
                   e.preventDefault();
-                  setTrailer({
+                  setTrailer( {
                     show: true,
-                    src: `https://www.youtube.com/embed/${movie["yt_trailer_code"]}?rel=0&wmode=transparent&border=0&autoplay=1&iv_load_policy=3`,
-                  });
+                    src: `https://www.youtube.com/embed/${ movie[ "yt_trailer_code" ] }?rel=0&wmode=transparent&border=0&autoplay=1&iv_load_policy=3`,
+                  } );
                   return;
-                }}
+                } }
                 // target="_blank"
                 // href={ `https://www.youtube.com/embed/${ movie[ "yt_trailer_code" ] }?rel=0&wmode=transparent&border=0&autoplay=1&iv_load_policy=3` }
-                className={Styles.play}
+                className={ Styles.play }
               >
-                <Play className={Styles.play} />
+                <Play className={ Styles.play } />
                 <span>Watch Trailer</span>
+              </a>
+              <a
+                onClick={ ( e ) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+
+                  let poster = movie.background_image.split( "/" );
+                  poster.pop();
+                  poster = poster.join( "/" );
+
+                  setShowPlayer( { show: true, hash: movie.torrents[ 0 ].hash, poster: `${ poster }/large-screenshot2.jpg`, imdb_id: movie.imdb_code, lang: movie.language } );
+                  return;
+                } }
+                // target="_blank"
+                // href={ `https://www.youtube.com/embed/${ movie[ "yt_trailer_code" ] }?rel=0&wmode=transparent&border=0&autoplay=1&iv_load_policy=3` }
+                className={ Styles.play }
+              >
+                <Play className={ Styles.play } />
+                <span>Watch Movie</span>
               </a>
               {/* <button type='button' className={ Styles.bm }>
               <Bookmark className={ Styles.bookmark } />
@@ -160,4 +179,4 @@ const MovieCard = ({ movie, variants, setTrailer }) => {
   );
 };
 
-export default memo(MovieCard);
+export default memo( MovieCard );

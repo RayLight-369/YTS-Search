@@ -5,7 +5,7 @@ import { animate, motion } from "framer-motion";
 
 const MovieCard = lazy( () => import( "../MovieCard/MovieCard" ) );
 
-const MovieCardContainer = ( { movies, setTrailer } ) => {
+const MovieCardContainer = ( { movies, setTrailer, showPlayer, setShowPlayer } ) => {
   const variants = useMemo(
     () => ( {
       initial: {
@@ -42,7 +42,7 @@ const MovieCardContainer = ( { movies, setTrailer } ) => {
     >
       { movies?.length &&
         movies.map( ( movie, index ) => (
-          <MovieCard movie={ movie } key={ index } variants={ variants } setTrailer={ setTrailer } />
+          <MovieCard movie={ movie } key={ index } variants={ variants } setTrailer={ setTrailer } setShowPlayer={ setShowPlayer } showPlayer={ showPlayer } />
         ) ) }
     </motion.div>
   );

@@ -35,51 +35,9 @@ const SearchPage = () => {
   const [ fetchMore, setFetchMore ] = useState( false );
   const [ trailer, setTrailer ] = useState( { show: false, src: "" } );
   const [ showRequest, setShowRequest ] = useState( false );
-  const [ showPlayer, setShowPlayer ] = useState( { show: false, hash: "" } );
-  const code = `const info_hash = 'E7B96E84A550F51CF193D93563A2592DBF2BE179';
-const magnetUrl = 'magnet:?xt=urn:btih:' + info_hash + '&amp;tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce';
-const button = document.querySelector("button");
-
-button.onclick = showVideoPlayer;
+  const [ showPlayer, setShowPlayer ] = useState( { show: false, hash: "", poster: "", imdb_id: undefined, lang: "" } );
 
 
-function showVideoPlayer () {
-  //document.getElementById('iwkjdooqw').style.display='none';y.selectedIndex].value;
-  //alert('#' + selected_info_hash);
-
-  window.webtor = window.webtor || [];
-  window.webtor.push({
-    id: 'videoplayer',
-    width: '100%',
-    magnet: 'magnet:?xt=urn:btih:' + info_hash + '&amp;tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce',
-    on: function (e) {
-      if (e.name == window.webtor.INITED) {
-        //console.log('Torrent fetched!', e.data);
-        e.player.play();
-      }
-      if (e.name == window.webtor.TORRENT_ERROR) {
-        console.log('Torrent error!');
-      }
-    },
-    poster: 'https://img.yts.mx/assets/images/movies/Annabelle_2014/large-screenshot2.jpg',
-    imdbId: '3322940',
-    lang: 'en',
-    userLang: '',
-    i18n: {
-      en: {
-        common: {
-          "prepare to play": "Preparing Video Stream... Please Wait...",
-        },
-        stat: {
-          "seeding": "Seeding",
-          "waiting": "Client initialization",
-          "waiting for peers": "Waiting for peers",
-          "from": "from",
-        },
-      },
-    },
-  });
-}`;
 
   useEffect( () => {
     const script = document.createElement( "script" );
@@ -95,6 +53,50 @@ function showVideoPlayer () {
       document.body.removeChild( script );
     };
   }, [] );
+
+  useEffect( () => {
+    window.webtor = window.webtor || [];
+
+    window.webtor.push( {
+      id: Styles[ "videoplayer" ],
+      width: '100%',
+      magnet: 'magnet:?xt=urn:btih:' + showPlayer.hash + '&amp;tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce',
+      on: function ( e ) {
+        if ( e.name == window.webtor.INITED ) {
+          //console.log('Torrent fetched!', e.data);
+          player.style.display = "block";
+          let player = document.getElementById( Styles[ "videoplayer" ] );
+          let children = player.childNodes;
+          if ( children.length > 1 ) {
+            for ( let i = 0; i < children.length - 1; i++ ) {
+              children[ i ].remove();
+            }
+          }
+          e.player.play();
+        }
+        if ( e.name == window.webtor.TORRENT_ERROR ) {
+          console.log( 'Torrent error!' );
+        }
+      },
+      poster: showPlayer.poster,
+      imdbId: showPlayer.imdb_id,
+      lang: showPlayer.lang,
+      userLang: '',
+      i18n: {
+        en: {
+          common: {
+            "prepare to play": "Preparing Video Stream... Please Wait...",
+          },
+          stat: {
+            "seeding": "Seeding",
+            "waiting": "Client initialization",
+            "waiting for peers": "Waiting for peers",
+            "from": "from",
+          },
+        },
+      },
+    } );
+  }, [ showPlayer ] );
 
   async function fetchMovies ( { Controller } ) {
     // if ( !input.trim().length ) {
@@ -189,6 +191,7 @@ function showVideoPlayer () {
   }, [ fetchMore ] );
 
   const handleClose = () => setShowRequest( false );
+  const handlePlayerClose = () => setShowPlayer( { show: false, hash: "" } );
 
   return (
     // <AnimatePresence mode='popLayout'>
@@ -226,7 +229,7 @@ function showVideoPlayer () {
           {/* SP Movies Torrents. */ }
         </div>
         <div className={ Styles.movies }>
-          <MovieCardContainer setTrailer={ setTrailer } movies={ movies } />
+          <MovieCardContainer setTrailer={ setTrailer } movies={ movies } showPlayer={ showPlayer } setShowPlayer={ setShowPlayer } />
           { pending && input.trim().length && (
             <motion.button
               whileHover={ { filter: "saturate(.7)", scale: 0.9 } }
@@ -249,11 +252,11 @@ function showVideoPlayer () {
             <RequestForm handleClose={ handleClose } />
           </Modal>
         ) }
-        { showPlayer.show && (
-          <Modal handleClose={ handleClose }>
-            <div className="webtor" id="videoplayer"></div>
-          </Modal>
-        ) }
+        {/* { showPlayer.show && ( */ }
+        {/* <Modal handleClose={ handlePlayerClose }> */ }
+        <div className="webtor" id={ Styles[ "videoplayer" ] }></div>
+        {/* </Modal> */ }
+        {/* ) } */ }
       </AnimatePresence>
     </>
     // </AnimatePresence>
