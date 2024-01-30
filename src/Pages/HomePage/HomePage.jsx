@@ -7,11 +7,17 @@ const HomePage = () => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const handleStateChange = (e) => {
+    function setStateLoaded() {
       if (document.readyState == "complete") {
         setLoaded(true);
         console.log("loaded");
       }
+    }
+
+    setStateLoaded();
+
+    const handleStateChange = (e) => {
+      setStateLoaded();
     };
 
     document.addEventListener("readystatechange", handleStateChange);
