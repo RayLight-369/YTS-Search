@@ -7,18 +7,17 @@ const HomePage = () => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const image = new Image();
-    image.src = "../../Assets/Imgs/bg.png";
-
-    image.onload = () => {
-      console.log("loaded");
-      setLoaded(true);
+    const handleStateChange = (e) => {
+      if (document.readyState == "complete") {
+        setLoaded(true);
+        console.log("loaded");
+      }
     };
 
+    document.addEventListener("readystatechange", handleStateChange);
+
     return () => {
-      image.onload = null;
-      console.log("loaded");
-      setLoaded(true);
+      document.removeEventListener("readystatechange", handleStateChange);
     };
   }, []);
 
