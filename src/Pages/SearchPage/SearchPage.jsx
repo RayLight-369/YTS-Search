@@ -119,7 +119,21 @@ const SearchPage = () => {
         },
       });
     } else {
-      window.webtor = [];
+      var div = document.getElementById(Styles["videoplayer"]);
+
+      // Get all child elements of the div
+      var children = div?.childNodes;
+
+      // Loop through each child element
+      if (children?.length) {
+        for (var i = children.length - 1; i >= 0; i--) {
+          // Check if the child element is not a button
+          if (children[i].tagName !== "BUTTON") {
+            // Remove the child element
+            div.removeChild(children[i]);
+          }
+        }
+      }
     }
   }, [showPlayer]);
 
