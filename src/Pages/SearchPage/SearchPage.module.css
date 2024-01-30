@@ -140,6 +140,8 @@ div#videoplayer {
   left: 0;
 }
 
+/* div#videoplayer */
+
 @media (max-width: 768px) {
 
   div.hero {
