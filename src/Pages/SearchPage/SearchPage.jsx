@@ -56,15 +56,21 @@ const SearchPage = () => {
 
   useEffect( () => {
     window.webtor = window.webtor || [];
-
+    let player = document.getElementById( Styles[ "videoplayer" ] );
+    let children = player.childNodes;
+    if ( children.length > 1 ) {
+      for ( let i = 0; i < children.length - 1; i++ ) {
+        children[ i ].remove();
+      }
+    }
     window.webtor.push( {
       id: Styles[ "videoplayer" ],
       width: '100%',
       magnet: 'magnet:?xt=urn:btih:' + showPlayer.hash + '&amp;tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce',
       on: function ( e ) {
+        player.style.display = "block";
         if ( e.name == window.webtor.INITED ) {
           //console.log('Torrent fetched!', e.data);
-          player.style.display = "block";
           let player = document.getElementById( Styles[ "videoplayer" ] );
           let children = player.childNodes;
           if ( children.length > 1 ) {
