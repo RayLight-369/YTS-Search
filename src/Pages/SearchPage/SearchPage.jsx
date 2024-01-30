@@ -53,8 +53,6 @@ const SearchPage = () => {
 
     document.body.appendChild(script);
 
-    document;
-
     return () => {
       document.body.removeChild(script);
     };
@@ -73,8 +71,8 @@ const SearchPage = () => {
       on: function (e) {
         if (e.name == window.webtor.INITED) {
           //console.log('Torrent fetched!', e.data);
-          player.style.display = "block";
           let player = document.getElementById(Styles["videoplayer"]);
+          player.style.display = "block";
           let children = player.childNodes;
           if (children.length > 1) {
             for (let i = 0; i < children.length - 1; i++) {

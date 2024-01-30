@@ -8,6 +8,7 @@ section.home-section {
 }
 
 div.overlay {
+  background-color: #100427;
   background: radial-gradient(50% 50% at 50% 50%, rgb(28, 9, 24, .7), rgb(8, 0, 9, .7));
   position: fixed;
   top: 0;
