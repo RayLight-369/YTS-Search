@@ -10,7 +10,7 @@ import Loader from "../../Assets/Imgs/loader.gif";
 // import { pipeline } from "stream";
 // import MG from "../../Assets/Imgs/magnifying_glass.svg";
 
-const Inputs = memo(({ input, setInput, handleSearch = () => {} }) => {
+const Inputs = memo(({ input, setInput, handleSearch }) => {
   return (
     <div className={Styles.inputs} onKeyDown={handleSearch}>
       <input
@@ -36,7 +36,7 @@ const SearchPage = () => {
   const [fetchMore, setFetchMore] = useState(false);
   const [trailer, setTrailer] = useState({ show: false, src: "" });
   const [showRequest, setShowRequest] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [playerLoading, setPlayerLoading] = useState(false);
   const [showPlayer, setShowPlayer] = useState({
     show: false,
