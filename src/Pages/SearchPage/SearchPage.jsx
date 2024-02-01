@@ -5,6 +5,7 @@ import MovieCardContainer from "../../Components/MovieCardContainer/MovieCardCon
 import Modal from "../../Components/Modal/Modal";
 import RequestForm from "../../Components/RequestForm/RequestForm";
 import Footer from "../../Components/Footer/Footer";
+import Loader from "../../Assets/Imgs/loader.gif";
 // import torrentStream from "torrent-stream";
 // import { pipeline } from "stream";
 // import MG from "../../Assets/Imgs/magnifying_glass.svg";
@@ -35,6 +36,8 @@ const SearchPage = () => {
   const [fetchMore, setFetchMore] = useState(false);
   const [trailer, setTrailer] = useState({ show: false, src: "" });
   const [showRequest, setShowRequest] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [playerLoading, setPlayerLoading] = useState(false);
   const [showPlayer, setShowPlayer] = useState({
     show: false,
     hash: "",
@@ -148,6 +151,8 @@ const SearchPage = () => {
     //   return;
     // }
 
+    setLoading(true);
+
     try {
       const reponse = await fetch(
         `https://yts.mx/api/v2/list_movies.json?query_term=${input}`,
@@ -172,6 +177,8 @@ const SearchPage = () => {
       if (!Controller?.signal.aborted) {
         console.log(e);
       }
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -180,6 +187,8 @@ const SearchPage = () => {
       setMovies([]);
       return;
     }
+
+    setLoading(true);
 
     try {
       const reponse = await fetch(
@@ -209,6 +218,7 @@ const SearchPage = () => {
       }
     } finally {
       setFetchMore(false);
+      setLoading(false);
     }
   }
 
@@ -217,7 +227,10 @@ const SearchPage = () => {
 
     fetchMovies({ Controller });
 
-    return () => Controller.abort();
+    return () => {
+      Controller.abort();
+      setLoading(false);
+    };
   }, [input]);
 
   useEffect(() => {
@@ -227,7 +240,10 @@ const SearchPage = () => {
       fetchPage({ Controller, page: movies.length / 20 + 1 });
     }
 
-    return () => Controller.abort();
+    return () => {
+      Controller.abort();
+      setLoading(false);
+    };
   }, [fetchMore]);
 
   const handleClose = () => setShowRequest(false);
@@ -235,6 +251,10 @@ const SearchPage = () => {
     setShowPlayer({ show: false, hash: "" });
     document.getElementById(Styles["videoplayer"]).style.display = "none";
   };
+
+  // if (loading) {
+  //   return
+  // }
 
   return (
     // <AnimatePresence mode='popLayout'>
@@ -272,24 +292,30 @@ const SearchPage = () => {
           {/* SP Movies Torrents. */}
         </div>
         <div className={Styles.movies}>
-          <MovieCardContainer
-            setTrailer={setTrailer}
-            movies={movies}
-            showPlayer={showPlayer}
-            setShowPlayer={setShowPlayer}
-          />
-          {pending && input.trim().length && (
-            <motion.button
-              whileHover={{ filter: "saturate(.7)", scale: 0.9 }}
-              transition={{ type: "spring" }}
-              type="button"
-              className={Styles.load_more}
-              onClick={() => {
-                setFetchMore(true);
-              }}
-            >
-              Load More
-            </motion.button>
+          {!loading ? (
+            <>
+              <MovieCardContainer
+                setTrailer={setTrailer}
+                movies={movies}
+                showPlayer={showPlayer}
+                setShowPlayer={setShowPlayer}
+              />
+              {pending && input.trim().length && (
+                <motion.button
+                  whileHover={{ filter: "saturate(.7)", scale: 0.9 }}
+                  transition={{ type: "spring" }}
+                  type="button"
+                  className={Styles.load_more}
+                  onClick={() => {
+                    setFetchMore(true);
+                  }}
+                >
+                  Load More
+                </motion.button>
+              )}
+            </>
+          ) : (
+            <img src={Loader} alt="loading" width={200} height={200} />
           )}
         </div>
       </div>
