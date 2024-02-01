@@ -315,7 +315,16 @@ const SearchPage = () => {
               )}
             </>
           ) : (
-            <img src={Loader} alt="loading" width={200} height={200} />
+            <img
+              src={Loader}
+              alt="loading"
+              width={200}
+              height={200}
+              style={{
+                position: "relative",
+                top: "-70px",
+              }}
+            />
           )}
         </div>
       </div>
