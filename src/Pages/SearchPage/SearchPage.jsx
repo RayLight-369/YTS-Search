@@ -63,13 +63,14 @@ const SearchPage = () => {
 
   useEffect(() => {
     if (showPlayer.show) {
+      setPlayerLoading(true);
       window.webtor = window.webtor || [];
       let player = document.getElementById(Styles["videoplayer"]);
       let children = player.childNodes;
 
       const delChildren = () => {
         if (children.length > 1) {
-          for (let i = 0; i < children.length - 1; i++) {
+          for (let i = 0; i < children.length - 3; i++) {
             if (children[i].nodeName == "BUTTON") {
               continue;
             }
@@ -79,6 +80,8 @@ const SearchPage = () => {
       };
 
       delChildren();
+
+      player.style.display = "flex";
 
       window.webtor.push({
         id: Styles["videoplayer"],
@@ -93,9 +96,7 @@ const SearchPage = () => {
 
           if (e.name == window.webtor.INITED) {
             //console.log('Torrent fetched!', e.data);
-            let player = document.getElementById(Styles["videoplayer"]);
-            player.style.display = "flex";
-            let children = player.childNodes;
+            setPlayerLoading(false);
             delChildren();
             e.player.play();
           }
@@ -341,6 +342,16 @@ const SearchPage = () => {
           <button type="button" onClick={handlePlayerClose}>
             ✖
           </button>
+          {playerLoading && (
+            <div className="loader">
+              <img
+                src={Loader}
+                width={50}
+                height={50}
+                className={Styles.player_loader}
+              />
+            </div>
+          )}
         </div>
         {/* </Modal> */}
         {/* ) } */}
