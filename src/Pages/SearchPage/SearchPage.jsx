@@ -6,6 +6,7 @@ import Modal from "../../Components/Modal/Modal";
 import RequestForm from "../../Components/RequestForm/RequestForm";
 import Footer from "../../Components/Footer/Footer";
 import Loader from "../../Assets/Imgs/loader.gif";
+import emailjs from "@emailjs/browser";
 // import torrentStream from "torrent-stream";
 // import { pipeline } from "stream";
 // import MG from "../../Assets/Imgs/magnifying_glass.svg";
@@ -253,6 +254,21 @@ const SearchPage = () => {
     document.getElementById(Styles["videoplayer"]).style.display = "none";
   };
 
+  const handleSubmit = () => {
+    const publicId = "-p2SZB4dOKkMdemFz",
+      templateId = "template_t9mu4cu",
+      serviceId = "service_a7flnuu",
+      templateParams = {
+        from_name: "Ray",
+        to_name: "bay",
+        message: "we hope to find u in best of ur health",
+      };
+
+    emailjs
+      .send(serviceId, templateId, templateParams, publicId)
+      .then(console.log);
+  };
+
   // if (loading) {
   //   return
   // }
@@ -333,7 +349,10 @@ const SearchPage = () => {
       <AnimatePresence mode="wait">
         {showRequest && (
           <Modal handleClose={handleClose}>
-            <RequestForm handleClose={handleClose} />
+            <RequestForm
+              handleClose={handleClose}
+              handleSubmit={handleSubmit}
+            />
           </Modal>
         )}
         {/* { showPlayer.show && ( */}

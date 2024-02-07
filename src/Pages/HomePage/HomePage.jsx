@@ -2,9 +2,11 @@ import React, { memo, useEffect, useState } from "react";
 import Styles from "./HomePage.module.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { SocialLionks } from "../../Constants";
+import Loader from "../../Assets/Imgs/loader.gif";
 
 const HomePage = () => {
   const [loaded, setLoaded] = useState(false);
+  const [oneCycleComplete, setAnimation] = useState(false);
 
   useEffect(() => {
     function setStateLoaded() {
@@ -49,6 +51,24 @@ const HomePage = () => {
     <>
       <section className={Styles["home-section"]}>
         <div className={Styles["overlay"]}></div>
+        <AnimatePresence mode="wait">
+          {!loaded && (
+            <motion.div
+              className={Styles["loader"]}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onAnimationComplete={() => setAnimation(true)}
+            >
+              <img
+                src={Loader}
+                width={200}
+                height={200}
+                className={Styles.player_loader}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
         {loaded && (
           <>
             <motion.div
