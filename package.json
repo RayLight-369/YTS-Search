@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^3.12.1",
     "@consumet/extensions": "^1.5.4",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -19,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.2",
     "react-scripts": "5.0.1",
+    "sendmail": "^1.6.1",
     "stream-browserify": "^3.0.0",
     "torrent-stream": "^1.2.1",
     "util": "^0.12.5",

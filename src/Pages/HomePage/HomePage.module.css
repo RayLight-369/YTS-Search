@@ -1,3 +1,13 @@
+div.loader{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0b030e;
+  z-index: 10000;
+}
+
 section.home-section {
   background-color: #100427;
   background: url("../../Assets/Imgs/bg.png");
