@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@consumet/extensions": "^1.5.4",
     "@emailjs/browser": "^3.12.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -11,6 +10,7 @@
     "assert": "^2.1.0",
     "body-parser": "^1.20.2",
     "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
     "express": "^4.18.2",
     "framer-motion": "^10.18.0",
     "os-browserify": "^0.3.0",

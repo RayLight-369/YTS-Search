@@ -1,6 +1,4 @@
-import { ANIME } from '@consumet/extensions';
-import { useEffect, useState } from 'react';     //lafafafa
-
+import { useEffect, useState } from 'react';
 
 /**
  * A custom React hook for fetching anime data.
@@ -12,21 +10,21 @@ import { useEffect, useState } from 'react';     //lafafafa
  */
 const useAnime = ( query, options ) => {
   const [ data, setData ] = useState( null );
-  const zoro = new ANIME.Zoro();
 
   useEffect( () => {
 
     if ( options.search && query.trim().length ) {
-      zoro.search( query ).then( data => {
-        setData( data );
-      } ).catch( err => {
-        console.log( err );
-      } );
+      fetch( "https://anime-api-liart.vercel.app/search", {
+        method: "POST",
+        body: JSON.stringify( {
+          query
+        } )
+      } ).then( res => res.json() ).then( body => setData( body ) );
     }
 
-    return [ data ];
+  }, [ query ] );
 
-  }, [ query, options ] );
+  return [ data ];
 };
 
 export default useAnime;

@@ -266,7 +266,12 @@ const SearchPage = () => {
 
     emailjs
       .send( serviceId, templateId, templateParams, publicId )
-      .then( console.log );
+      .then( ( data ) => {
+        console.log( data );
+      } ).then( () => {
+        handleClose();
+      } );
+
   };
 
   // if (loading) {
