@@ -12,9 +12,29 @@ const AnimePage = () => {
   const [ searchResults, setSearchResults ] = useState( null );
 
 
+
+  const fetchTopAiring = async ( { controller } ) => {
+    try {
+      const response = await fetch( "https://anime-api-liart.vercel.app/top-airing", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json" // Set content type header
+        },
+        signal: controller?.signal
+      } );
+
+      if ( response.ok ) {
+        const body = await response.json();
+        setSearchResults( body );
+      }
+    } catch ( e ) {
+      if ( e.name != "AbortError" ) console.log( e );
+    }
+  };
+
   const fetchAnime = async ( { controller, query = input } ) => {
     try {
-      const response = await fetch( "http://localhost:5260/search", {
+      const response = await fetch( "https://anime-api-liart.vercel.app/search", {
         method: "POST",
         body: JSON.stringify( {
           query
@@ -27,7 +47,7 @@ const AnimePage = () => {
 
       if ( response.ok ) {
         const body = await response.json();
-        console.log( { query, body } );
+        setSearchResults( body );
       }
     } catch ( e ) {
       if ( e.name != "AbortError" ) console.log( e );
@@ -45,7 +65,15 @@ const AnimePage = () => {
   useEffect( () => {
     const controller = new AbortController();
 
-    fetchAnime( { controller } );
+    if ( input.trim().length ) {
+
+      fetchAnime( { controller } );
+
+    } else {
+
+      fetchTopAiring( { controller } );
+
+    }
 
     return () => controller.abort();
 
@@ -71,7 +99,11 @@ const AnimePage = () => {
       </div>
       <div className={ Styles[ "anime-section" ] }>
         <div className={ Styles[ "top-picks" ] }>
-          <p className={ Styles[ "heading" ] }>Top picks for you</p>
+          { input.trim().length == 0 ? (
+            <p className={ Styles[ "heading" ] }>Top picks for you</p>
+          ) : (
+            <p className={ Styles[ "heading" ] }>Search Results</p>
+          ) }
           { searchResults && searchResults.results.length && (
             <AnimeCardContainer animes={ searchResults.results } className={ Styles[ "anime-container" ] } />
           ) }
