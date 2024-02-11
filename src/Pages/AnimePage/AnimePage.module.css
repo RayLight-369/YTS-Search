@@ -39,3 +39,28 @@ div.hero .inputs {
   width: 55%;
   backdrop-filter: blur(5px);
 }
+
+div.anime-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px 35px;
+  color: #fdfdfd;
+  background: #110611;
+  /* box-shadow: 0 -100px 20px #110611; */
+}
+
+div.top-picks {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+div.anime-container {
+  justify-content: flex-start;
+}
+
+p.heading {
+  font-family: AnimeAce;
+}
