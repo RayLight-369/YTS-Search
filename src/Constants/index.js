@@ -31,5 +31,9 @@ export const NavbarLinks = [
   {
     name: "Movies",
     link: "/movies"
+  },
+  {
+    name: "Anime",
+    link: "/anime"
   }
 ];
