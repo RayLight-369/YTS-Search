@@ -189,13 +189,5 @@ div.episode-container div.content p.number {
 
   div.recent-episodes {
     width: calc(100vw - 40px);
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding: 15px 20px;
-    height: auto;
-    border-radius: 15px;
-    overflow: auto;
-    background: rgba(35, 22, 35, 0.5);
   }
 }
