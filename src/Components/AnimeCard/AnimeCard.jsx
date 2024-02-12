@@ -15,6 +15,7 @@ const AnimeCard = ( {
 
   const [ showOptions, setShowOptions ] = useState( false );
   const [ animeInfo, setAnimeInfo ] = useState( null );
+  const [ basicInfo, setBasicInfo ] = useState( null );
 
   const fetchAnimeInfo = async () => {
     try {
@@ -31,6 +32,12 @@ const AnimeCard = ( {
       if ( response.ok ) {
         const body = await response.json();
         setAnimeInfo( body );
+        setBasicInfo( {
+          Type: body.type,
+          Date: body.releaseDate,
+          Episodes: body.totalEpisodes,
+          Status: body.status
+        } );
       }
     } catch ( e ) {
       if ( e.name != "AbortError" ) console.log( e );
@@ -66,26 +73,21 @@ const AnimeCard = ( {
           e.stopPropagation();
         } }
       >
-        <motion.div
+
+
+        <div
           className={ Styles.card }
-          transition={ {
-            delay: 0,
-            // duration: 0.2,
-            type: "spring",
-            damping: 9,
-          } }
-          whileHover={ { scale: 1.04 } }
+        // transition={ {
+        //   delay: 0,
+        //   // duration: 0.2,
+        //   type: "spring",
+        //   damping: 9,
+        // } }
+        // whileHover={ { scale: 1.04 } }
         >
           <div className={ Styles.image }>
             <img src={ anime.image } alt="" />
-
           </div>
-
-          {/* <div className={ Styles[ "hover-info" ] }>
-            <p>blah blah</p>
-            <a href="">blah bah</a>
-            <h1>hahaha</h1>
-          </div> */}
 
           <div className={ Styles.content }>
             <div className={ Styles[ "title-rating-genre" ] }>
@@ -95,14 +97,15 @@ const AnimeCard = ( {
                 </p>
               </div>
               <div className={ Styles[ "type-genre" ] }>
-                {/* <p className={ Styles[ "type" ] }>{ anime.type }.</p> */ }
                 <p className={ Styles[ "genre" ] }>{ anime?.genres?.join( ", " ) || animeInfo?.genres?.join( ", " ) }</p>
               </div>
             </div>
 
           </div>
-        </motion.div>
+        </div>
+
       </a>
+
     </>
   );
 };

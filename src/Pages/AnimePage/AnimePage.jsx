@@ -114,6 +114,7 @@ const AnimePage = () => {
             input={ input }
             setInput={ setInput }
             className={ Styles[ "inputs" ] }
+            placeholder='Search Anime'
           />
         </div>
       </div>
