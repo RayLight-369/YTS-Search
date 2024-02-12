@@ -27,7 +27,7 @@ const AnimeCardContainer = ( {
 
   return (
     <div
-      className={ `${ Styles[ "movies-container" ] } ${ className }` }
+      className={ `${ Styles[ "animes-container" ] } ${ className }` }
     // variants={variants}
     // initial="initial"
     // animate="animate"

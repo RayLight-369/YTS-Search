@@ -107,8 +107,8 @@ const AnimeCard = ( {
                 </p>
               </div>
               <div className={ Styles[ "type-genre" ] }>
-                <p className={ Styles[ "type" ] }>{ anime.type }.</p>
-                {/* <p className={ Styles[ "genre" ] }>{ anime.genres.join( ", " ) }</p> */ }
+                {/* <p className={ Styles[ "type" ] }>{ anime.type }.</p> */ }
+                <p className={ Styles[ "genre" ] }>{ anime.genres.join( ", " ) }</p>
               </div>
             </div>
 
