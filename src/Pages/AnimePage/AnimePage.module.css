@@ -42,7 +42,7 @@ div.hero .inputs {
 
 div.anime-section {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   justify-content: center;
   padding: 20px 35px;
@@ -55,14 +55,63 @@ div.top-picks {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 70vw;
 }
 
 div.anime-container {
   justify-content: flex-start !important;
-  width: 75% !important;
+  width: 100% !important;
   gap: 50px 30px !important;
 }
 
 p.heading {
   font-family: AnimeAce;
+}
+
+div.recent-episodes {
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 15px 20px;
+  height: auto;
+  border-radius: 15px;
+  overflow: auto;
+  background: rgba(35, 22, 35, 0.5);
+}
+
+p.recent-episodes-heading {
+  font-family: AnimeAce;
+}
+
+div.episode-container {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+div.episode-container img {
+  width: 57.85px;
+  height: 68.9px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+div.episode-container div.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+div.episode-container div.content p.title {
+  font-family: Quicksand;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+div.episode-container div.content p.number {
+  font-family: Quicksand;
+  font-size: 14px;
 }

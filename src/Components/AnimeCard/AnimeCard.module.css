@@ -3,8 +3,8 @@ div.card {
   display: flex;
   flex-direction: column;
   width: fit-content;
-  height: 350px;
-  width: 210px;
+  height: 300px;
+  width: 180px;
   /* box-shadow: 0px 0px 19px rgba(0, 0, 0, .8); */
   filter: drop-shadow(8px 4px 142.6px rgba(228, 183, 255, 0.20));
   position: relative;
@@ -99,7 +99,7 @@ div.card div.image div.torrents a.torrent .download {
 div.content {
   position: absolute;
   bottom: 0;
-  padding: 0 12px 12px;
+  padding: 0 14px 12px 12px;
   display: flex;
   width: 100%;
   gap: 15px;
@@ -123,7 +123,7 @@ div.title-rating {
 div.title-rating p.title {
   white-space: nowrap;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 div.rating {
