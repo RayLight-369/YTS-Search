@@ -81,11 +81,11 @@ const AnimeCard = ( {
 
           </div>
 
-          <div className={ Styles[ "hover-info" ] }>
+          {/* <div className={ Styles[ "hover-info" ] }>
             <p>blah blah</p>
             <a href="">blah bah</a>
             <h1>hahaha</h1>
-          </div>
+          </div> */}
 
           <div className={ Styles.content }>
             <div className={ Styles[ "title-rating-genre" ] }>
