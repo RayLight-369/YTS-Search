@@ -45,6 +45,14 @@ div.card div.image {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(12, 1, 15, 1) 87.16665506362915%, rgba(7, 0, 9, 1) 100%)
 }
 
+div.card div.hover-info {
+  display: none;
+}
+
+div.card:hover div.hover-info {
+  display: flex;
+}
+
 div.card div.image img {
   background: var(--accent-color);
   width: 100%;

@@ -38,8 +38,9 @@ const AnimeCard = ( {
   };
 
   useEffect( () => {
-
+    fetchAnimeInfo();
   }, [] );
+
 
   // const [ isMobile, setIsMobile ] = useState( true );
 
@@ -79,6 +80,13 @@ const AnimeCard = ( {
             <img src={ anime.image } alt="" />
 
           </div>
+
+          <div className={ Styles[ "hover-info" ] }>
+            <p>blah blah</p>
+            <a href="">blah bah</a>
+            <h1>hahaha</h1>
+          </div>
+
           <div className={ Styles.content }>
             <div className={ Styles[ "title-rating-genre" ] }>
               <div className={ Styles[ "title-rating" ] }>
@@ -88,7 +96,7 @@ const AnimeCard = ( {
               </div>
               <div className={ Styles[ "type-genre" ] }>
                 {/* <p className={ Styles[ "type" ] }>{ anime.type }.</p> */ }
-                <p className={ Styles[ "genre" ] }>{ anime.genres.join( ", " ) }</p>
+                <p className={ Styles[ "genre" ] }>{ anime?.genres?.join( ", " ) || animeInfo?.genres?.join( ", " ) }</p>
               </div>
             </div>
 

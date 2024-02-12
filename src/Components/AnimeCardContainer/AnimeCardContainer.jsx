@@ -37,7 +37,7 @@ const AnimeCardContainer = ( {
         animes.map( ( anime, index ) => (
           <AnimeCard
             anime={ anime }
-            key={ index }
+            key={ anime.id }
           />
         ) ) }
     </div>
