@@ -134,13 +134,15 @@ const AnimePage = () => {
             Recent Episodes
           </p>
           { recentEpisodes?.results.length && recentEpisodes.results.map( ( ep, id ) => (
-            <div className={ Styles[ "episode-container" ] } key={ id }>
-              <img src={ ep.image } alt="" />
-              <div className={ Styles[ "content" ] }>
-                <p className={ Styles[ "title" ] }>{ ep.title.length > 40 ? ep.title.slice( 0, 40 ) + " ..." : ep.title }</p>
-                <p className={ Styles[ "number" ] }>Episode { ep.episodeNumber }</p>
+            <a href={ ep.url } target='_blank' onClick={ e => e.stopPropagation() }>
+              <div className={ Styles[ "episode-container" ] } key={ id }>
+                <img src={ ep.image } alt="" />
+                <div className={ Styles[ "content" ] }>
+                  <p className={ Styles[ "title" ] }>{ ep.title.length > 40 ? ep.title.slice( 0, 40 ) + " ..." : ep.title }</p>
+                  <p className={ Styles[ "number" ] }>Episode { ep.episodeNumber }</p>
+                </div>
               </div>
-            </div>
+            </a>
           ) )
           }
         </div>

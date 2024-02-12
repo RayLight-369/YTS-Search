@@ -65,11 +65,11 @@ const AnimeCard = ( {
         ) }
       </AnimatePresence> */}
       <a
-        // href={ `https://www.imdb.com/title/${ movie.imdb_code }` }
-        // target="_blank"
+        href={ anime.url }
+        target="_blank"
         className={ Styles.cover }
         onClick={ ( e ) => {
-          e.preventDefault();
+          // e.preventDefault();
           e.stopPropagation();
         } }
       >
@@ -102,6 +102,36 @@ const AnimeCard = ( {
             </div>
 
           </div>
+        </div>
+
+        <div className={ Styles[ "hover-info" ] }>
+          <div className={ Styles[ "info" ] }>
+            {/* <img src={ animeInfo?.image } alt="poster" /> */ }
+            <div className={ Styles[ "content" ] }>
+              <p className={ Styles[ "title" ] }>{ animeInfo?.title }</p>
+              <div className={ Styles[ "props" ] }>
+                <div className={ Styles[ "genre" ] }>
+                  <p className={ Styles[ "heading" ] }>Genre:</p>
+                  <div className={ Styles[ "genres" ] }>
+                    { animeInfo && animeInfo.genres.map( ( genre, key ) => (
+                      <span className={ Styles[ "tag" ] } key={ key }>{ genre }</span>
+                    ) ) }
+                  </div>
+                </div>
+                { basicInfo && Object.entries( basicInfo ).map( ( [ key, val ] ) => (
+                  <div className={ Styles[ "info" ] } key={ val }>
+                    <p className={ Styles[ "info-heading" ] }>{ key }: </p>
+                    <p className={ Styles[ "info-tag" ] }>{ val }</p>
+                  </div>
+                ) ) }
+                <div className={ Styles[ "type" ] }>
+                  <p className={ Styles[ "heading" ] }>Type:</p>
+                  <p className={ Styles[ "tag" ] }>{ animeInfo?.releaseDate }</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className={ Styles[ "description" ] }>{ animeInfo?.description }</p>
         </div>
 
       </a>

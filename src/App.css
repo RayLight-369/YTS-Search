@@ -5,6 +5,11 @@
   cursor: url("./Assets/Imgs/cursor.svg"), auto;
 }
 
+a {
+  text-decoration: none;
+  color: #fdfdfd;
+}
+
 @font-face {
   font-family: Quicksand;
   src: url("../src/Assets/Fonts/Quicksand.ttf");

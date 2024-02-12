@@ -58,9 +58,9 @@ div.hover-info {
   display: none;
 }
 
-div.card:hover + div.hover-info {
+/* div.card:hover + div.hover-info {
   display: flex;
-}
+} */
 
 div.card > div.image img {
   background: var(--accent-color);
