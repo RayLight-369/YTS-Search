@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import Styles from "./AnimeCard.module.css";
 import { ReactComponent as Star } from "../../Assets/Imgs/Star.svg";
 import { ReactComponent as Language } from "../../Assets/Imgs/language.svg";
@@ -9,57 +9,37 @@ import { ReactComponent as Play } from "../../Assets/Imgs/play.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import Modal from "../Modal/Modal";
 
-const OptionsElement = memo( ( { torrents, showOptions } ) => {
-  const variants2 = {
-    initial: {
-      y: -50,
-      opacity: 0,
-    },
-    animate: {
-      y: 0,
-      opacity: 1,
-    },
-    exit: {
-      y: 20,
-      opacity: 0,
-    },
-  };
-
-  return (
-    <motion.div
-      className={ Styles.options }
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={ variants2 }
-    >
-      <AnimatePresence mode="wait">
-        { showOptions &&
-          torrents.map( ( torrent, index ) => (
-            <motion.a
-              variants={ variants2 }
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={ { delay: index * 0.1, duration: 0.1 } }
-              href={ torrent.url }
-              key={ index }
-              target="_blank"
-              className={ Styles.torrent }
-            >
-              <Download className={ Styles.download } />
-              { `${ torrent.quality } ${ torrent.type } ${ torrent.size }` }
-            </motion.a>
-          ) ) }
-      </AnimatePresence>
-    </motion.div>
-  );
-} );
-
 const AnimeCard = ( {
   anime
 } ) => {
+
   const [ showOptions, setShowOptions ] = useState( false );
+  const [ animeInfo, setAnimeInfo ] = useState( null );
+
+  const fetchAnimeInfo = async () => {
+    try {
+      const response = await fetch( "https://anime-api-liart.vercel.app/anime-info", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json" // Set content type header
+        },
+        body: JSON.stringify( {
+          id: anime.id
+        } ),
+      } );
+
+      if ( response.ok ) {
+        const body = await response.json();
+        setAnimeInfo( body );
+      }
+    } catch ( e ) {
+      if ( e.name != "AbortError" ) console.log( e );
+    }
+  };
+
+  useEffect( () => {
+
+  }, [] );
 
   // const [ isMobile, setIsMobile ] = useState( true );
 

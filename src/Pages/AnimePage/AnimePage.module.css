@@ -89,6 +89,38 @@ div.episode-container {
   gap: 20px;
   justify-content: flex-start;
   align-items: center;
+  background: #ffffff10;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 9px 10px;
+  transition: 150ms;
+  position: relative;
+  /* transform: translateY(10px) scale(.9);
+  opacity: 0;
+  animation: translate linear forwards;
+  animation-timeline: view();
+  animation-range: entry -50px; */
+}
+
+div.episode-container:hover {
+  transform: scale(1.05);
+}
+
+div.episode-container::after {
+  content: "⮞";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: none;
+  color: white;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 150ms;
+}
+
+div.episode-container:hover::after {
+  right: 10px;
 }
 
 div.episode-container img {
@@ -114,4 +146,56 @@ div.episode-container div.content p.title {
 div.episode-container div.content p.number {
   font-family: Quicksand;
   font-size: 14px;
+}
+
+@keyframes translate {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  div.bg {
+    height: 70vh;
+  }
+
+  div.hero p {
+    font-family: AnimeAce;
+    color: white;
+    font-size: 26px;
+    line-height: 130%;
+    text-align: center;
+    width: 80%;
+  }
+
+  div.anime-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    /* justify-content: center; */
+  }
+
+  div.top-picks {
+    width: calc(100vw - 40px);
+    /* justify-content: center; */
+  }
+
+  div.anime-container {
+    gap: 30px 20px !important;
+    justify-content: space-evenly !important;
+  }
+
+  div.recent-episodes {
+    width: calc(100vw - 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 15px 20px;
+    height: auto;
+    border-radius: 15px;
+    overflow: auto;
+    background: rgba(35, 22, 35, 0.5);
+  }
 }
