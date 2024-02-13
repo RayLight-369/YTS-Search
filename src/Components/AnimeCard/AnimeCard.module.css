@@ -4,7 +4,7 @@ div.card {
   width: fit-content;
   height: 300px;
   width: 180px;
-  filter: drop-shadow(8px 4px 142.6px rgba(228, 183, 255, 0.20));
+  filter: drop-shadow(0 0 50.6px rgba(228, 183, 255, .1));
   position: relative;
   z-index: 10;
   border-radius: 20px;
@@ -23,7 +23,7 @@ a.cover {
   transform: scale(.9);
   animation: display linear forwards;
   animation-timeline: view();
-  animation-range: entry -50px;
+  animation-range: entry -25px;
 }
 
 @keyframes display {

@@ -49,6 +49,29 @@ div.anime-section {
   color: #fdfdfd;
   background: #110611;
   box-shadow: 0 -120px 90px #110611;
+  position: relative;
+}
+
+div.anime-section::before {
+  content: " ";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: #573057;
+  top: 50px;
+  left: -60px;
+  filter: blur(120px);
+}
+
+div.anime-section::after {
+  content: " ";
+  position: absolute;
+  width: 130px;
+  height: 170px;
+  background: #573057;
+  top: 250px;
+  right: -60px;
+  filter: blur(120px);
 }
 
 div.top-picks {
