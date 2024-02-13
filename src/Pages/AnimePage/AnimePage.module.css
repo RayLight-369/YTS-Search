@@ -112,7 +112,7 @@ div.episode-container {
   gap: 20px;
   justify-content: flex-start;
   align-items: center;
-  background: #ffffff10;
+  background: #ffffff08;
   border-radius: 10px;
   overflow: hidden;
   padding: 9px 10px;
@@ -127,6 +127,7 @@ div.episode-container {
 
 div.episode-container:hover {
   transform: scale(1.05);
+  background: #ffffff10;
 }
 
 div.episode-container::after {
