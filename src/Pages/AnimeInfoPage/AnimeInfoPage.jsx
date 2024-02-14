@@ -17,39 +17,40 @@ const AnimeInfoPage = () => {
   const [ animeInfo, setAnimeInfo ] = useState( null );
   const [ basicInfo, setBasicInfo ] = useState( null );
 
-  const fetchAnimeInfo = async ( animeID = animeID ) => {
-    try {
-
-      const response = await fetch( "https://anime-api-liart.vercel.app/anime-info", {
-        method: "POST",
-        body: JSON.stringify( {
-          id: animeID,
-        } ),
-        headers: {
-          "Content-Type": "application/json" // Set content type header
-        },
-      } );
-
-      if ( response.ok ) {
-        const body = await response.json();
-        setAnimeInfo( {
-          ...body,
-          episodes: body.episodes.map( ep => ( { id: ep.id, number: ep.number } ) )
-        } );
-        setBasicInfo( {
-          Type: body.type,
-          Date: body.releaseDate,
-          Episodes: body.totalEpisodes,
-          Status: body.status,
-        } );
-      }
-
-    } catch ( e ) {
-      console.log( e );
-    }
-  };
-
   useEffect( () => {
+    const fetchAnimeInfo = async ( animeID = animeID ) => {
+      try {
+
+        const response = await fetch( "https://anime-api-liart.vercel.app/anime-info", {
+          method: "POST",
+          body: JSON.stringify( {
+            id: animeID,
+          } ),
+          headers: {
+            "Content-Type": "application/json" // Set content type header
+          },
+        } );
+
+        if ( response.ok ) {
+          const body = await response.json();
+          setAnimeInfo( {
+            ...body,
+            episodes: body.episodes.map( ep => ( { id: ep.id, number: ep.number } ) )
+          } );
+          setBasicInfo( {
+            Type: body.type,
+            Date: body.releaseDate,
+            Episodes: body.totalEpisodes,
+            Status: body.status,
+          } );
+        }
+
+      } catch ( e ) {
+        console.log( e );
+      }
+    };
+
+
     if ( animeID ) fetchAnimeInfo( animeID );
   }, [ animeID ] );
 
