@@ -213,3 +213,25 @@ a.episode-brick {
 a.episode-brick:hover {
   transform: scale(1.08);
 }
+
+@media (max-width: 768px) {
+  div.content div.anime-section {
+    width: calc(100vw - 40px);
+    padding: 19px 19px;
+  }
+
+  div.content {
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+  }
+
+  div.specific-anime-info {
+    gap: 64px;
+  }
+
+  div.anime-content {
+    flex-direction: column;
+    align-items: center;
+  }
+}

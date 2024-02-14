@@ -39,6 +39,7 @@ const SearchPage = () => {
   const [ trailer, setTrailer ] = useState( { show: false, src: "" } );
   const [ showRequest, setShowRequest ] = useState( false );
   const [ loading, setLoading ] = useState( true );
+  const [ newPageLoading, setNewPageLoading ] = useState( false );
   const [ playerLoading, setPlayerLoading ] = useState( false );
   const [ showPlayer, setShowPlayer ] = useState( {
     show: false,
@@ -191,7 +192,7 @@ const SearchPage = () => {
       return;
     }
 
-    setLoading( true );
+    setNewPageLoading( true );
 
     try {
       const reponse = await fetch(
@@ -244,7 +245,7 @@ const SearchPage = () => {
 
     return () => {
       Controller.abort();
-      setLoading( false );
+      setNewPageLoading( false );
     };
   }, [ fetchMore ] );
 
@@ -334,6 +335,18 @@ const SearchPage = () => {
                 >
                   Load More
                 </motion.button>
+              ) }
+              { newPageLoading && (
+                <img
+                  src={ Loader }
+                  alt="loading"
+                  width={ 200 }
+                  height={ 200 }
+                  style={ {
+                    position: "relative",
+                    top: "-70px",
+                  } }
+                />
               ) }
             </>
           ) : (

@@ -1,16 +1,16 @@
 import { lazy, memo, useMemo } from "react";
-import MovieCard from "../MovieCard/MovieCard";
+// import MovieCard from "../MovieCard/MovieCard";
 import Styles from "./MovieCardContainer.module.css";
 import { animate, motion } from "framer-motion";
 
-// const MovieCard = lazy(() => import("../MovieCard/MovieCard"));
+const MovieCard = lazy( () => import( "../MovieCard/MovieCard" ) );
 
-const MovieCardContainer = ({
+const MovieCardContainer = ( {
   movies,
   setTrailer,
   showPlayer,
   setShowPlayer,
-}) => {
+} ) => {
   // const variants = useMemo(
   //   () => ({
   //     initial: {
@@ -30,25 +30,25 @@ const MovieCardContainer = ({
 
   return (
     <div
-      className={Styles["movies-container"]}
-      // variants={variants}
-      // initial="initial"
-      // animate="animate"
-      // transition={transition}
+      className={ Styles[ "movies-container" ] }
+    // variants={variants}
+    // initial="initial"
+    // animate="animate"
+    // transition={transition}
     >
-      {movies?.length &&
-        movies.map((movie, index) => (
+      { movies?.length &&
+        movies.map( ( movie, index ) => (
           <MovieCard
-            movie={movie}
-            key={index}
+            movie={ movie }
+            key={ index }
             // variants={variants}
-            setTrailer={setTrailer}
-            setShowPlayer={setShowPlayer}
-            showPlayer={showPlayer}
+            setTrailer={ setTrailer }
+            setShowPlayer={ setShowPlayer }
+            showPlayer={ showPlayer }
           />
-        ))}
+        ) ) }
     </div>
   );
 };
 
-export default memo(MovieCardContainer);
+export default memo( MovieCardContainer );
