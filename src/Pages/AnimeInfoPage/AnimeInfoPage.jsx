@@ -2,6 +2,7 @@ import { memo, useEffect, useState } from "react";
 import Styles from "./AnimeInfoPage.module.css";
 import { useParams } from "react-router-dom";
 import RecentEpisodes from "../../Components/RecentEpisodes/RecentEpisodes";
+import { Helmet } from "react-helmet";
 
 
 const EpisodeBrick = memo( ( { ep } ) => {
@@ -59,7 +60,17 @@ const AnimeInfoPage = () => {
   }, [ animeInfo ] );
 
   return (
+
     <div id={ Styles[ "anime-info" ] }>
+      <Helmet>
+        <meta property="og:title" content={ animeInfo.title } />
+
+        <meta property="og:description" content={ animeInfo.description } />
+
+        <meta property="og:image" content={ animeInfo.image } />
+
+        <meta property="og:url" content={ `/anime/${ animeInfo.id }` } />
+      </Helmet>
       <div className={ Styles[ "content" ] }>
         { animeInfo && (
           <div className={ Styles[ "anime-section" ] }>
