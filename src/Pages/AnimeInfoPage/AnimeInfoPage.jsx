@@ -46,7 +46,6 @@ const AnimeInfoPage = () => {
           setOgValues( {
             title: body.title,
             description: body.description,
-            url: body.url,
             image: body.image
           } );
 
