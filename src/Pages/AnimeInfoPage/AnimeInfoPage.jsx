@@ -1,8 +1,9 @@
 import { memo, useEffect, useState } from "react";
 import Styles from "./AnimeInfoPage.module.css";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import RecentEpisodes from "../../Components/RecentEpisodes/RecentEpisodes";
 import { Helmet } from "react-helmet";
+
 
 
 const EpisodeBrick = memo( ( { ep } ) => {
@@ -17,6 +18,13 @@ const AnimeInfoPage = () => {
   const { animeID } = useParams();
   const [ animeInfo, setAnimeInfo ] = useState( null );
   const [ basicInfo, setBasicInfo ] = useState( null );
+  const Url = useLocation();
+  const [ ogValues, setOgValues ] = useState( {
+    title: "Anime",
+    description: "Anime",
+    image: "",
+    url: Url
+  } );
 
   useEffect( () => {
     const fetchAnimeInfo = async ( animeID = animeID ) => {
@@ -34,10 +42,19 @@ const AnimeInfoPage = () => {
 
         if ( response.ok ) {
           const body = await response.json();
+
+          setOgValues( {
+            title: body.title,
+            description: body.description,
+            url: body.url,
+            image: body.image
+          } );
+
           setAnimeInfo( {
             ...body,
             episodes: body.episodes.map( ep => ( { id: ep.id, number: ep.number } ) )
           } );
+
           setBasicInfo( {
             Type: body.type,
             Date: body.releaseDate,
@@ -63,13 +80,13 @@ const AnimeInfoPage = () => {
 
     <div id={ Styles[ "anime-info" ] }>
       <Helmet>
-        <meta property="og:title" content={ animeInfo.title } />
+        <meta property="og:title" content={ ogValues.title } />
 
-        <meta property="og:description" content={ animeInfo.description } />
+        <meta property="og:description" content={ ogValues.description } />
 
-        <meta property="og:image" content={ animeInfo.image } />
+        <meta property="og:image" content={ ogValues.image } />
 
-        <meta property="og:url" content={ `/anime/${ animeInfo.id }` } />
+        <meta property="og:url" content={ `/anime/${ ogValues.url }` } />
       </Helmet>
       <div className={ Styles[ "content" ] }>
         { animeInfo && (
