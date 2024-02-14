@@ -37,3 +37,8 @@ export const NavbarLinks = [
     link: "/anime"
   }
 ];
+
+export const TYPES = {
+  TOP_AIRING: "TOP_AIRING",
+  SEARCH: "SEARCH",
+};

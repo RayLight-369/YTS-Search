@@ -5,26 +5,31 @@ import useAnime from '../../Hooks/useAnime';
 import AnimeCardContainer from '../../Components/AnimeCardContainer/AnimeCardContainer';
 import { TYPES } from '../../Constants';
 import useOnScreen from '../../Hooks/useOnScreen';
-import RecentEpisodes from '../../Components/RecentEpisodes/RecentEpisodes';
+import { Outlet } from 'react-router-dom';
+
 
 const AnimePage = () => {
 
-  const [ input, setInput ] = useState( "" );
-  const [ searchResults, setSearchResults ] = useState( null );
-  const [ currentPageType, setCurrentPageType ] = useState( TYPES.TOP_AIRING );
-  const ref = useRef();
-  const isVisible = useOnScreen( ref );
-  const [ currentPage, setCurrentPage ] = useState( {
-    type: TYPES.TOP_AIRING,
-    hasNextPage: false,
-    pageNum: 1
-  } );
+  const [ recentEpisodes, setRecentEpisodes ] = useState( null );
 
-  useEffect( () => {
-    const handleScroll = e => {
-      const scrollY = document.documentElement.scrollTop;
-    };
-  }, [] );
+  const fetchRecentEpisodes = async ( { controller } ) => {
+    try {
+      const response = await fetch( "https://anime-api-liart.vercel.app/recent-episodes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json" // Set content type header
+        },
+        signal: controller?.signal
+      } );
+
+      if ( response.ok ) {
+        const body = await response.json();
+        setRecentEpisodes( body );
+      }
+    } catch ( e ) {
+      if ( e.name != "AbortError" ) console.log( e );
+    }
+  };
 
   const fetchTopAiring = async ( { controller, page = 1 } ) => {
     try {
@@ -107,57 +112,31 @@ const AnimePage = () => {
 
 
   useEffect( () => {
-    const controller = new AbortController();
-
-    if ( input.trim().length ) {
-
-      fetchAnime( { controller } );
-
-    } else {
-
-      fetchTopAiring( { controller: null } );
-
-    }
-
-    return () => controller.abort();
-
-  }, [ input ] );
-
-  useEffect( () => {
-    console.log( searchResults );
-  }, [ searchResults ] );
-
-  useEffect( () => {
-    console.log( "ref: ", isVisible );
-  }, [ isVisible ] );
+    // const controller = new AbortController();
+    fetchRecentEpisodes( { controller: null } );
+  }, [] );
 
   return (
     <>
-      <img src={ require( "../../Assets/Imgs/bg-img.jpg" ) } className={ Styles[ 'bg-img' ] } alt="bg" />
-      <div className={ Styles[ "bg" ] }>
-        <div className={ Styles[ "hero" ] }>
-          <p className={ Styles[ "punchline" ] }>Where every frame tells a story - Welcome to our Anime Haven.</p>
-          <Search
-            handleSearch={ handleSearch }
-            input={ input }
-            setInput={ setInput }
-            className={ Styles[ "inputs" ] }
-            placeholder='Search Anime'
-          />
-        </div>
-      </div>
       <div className={ Styles[ "anime-section" ] }>
-        <div className={ Styles[ "top-picks" ] }>
-          { input.trim().length == 0 ? (
-            <p className={ Styles[ "heading" ] }>Top picks for you</p>
-          ) : (
-            <p className={ Styles[ "heading" ] } >Search Results</p>
-          ) }
-          { searchResults && searchResults.results.length && (
-            <AnimeCardContainer animes={ searchResults.results } className={ Styles[ "anime-container" ] } />
-          ) }
+        <Outlet />
+        <div className={ Styles[ "recent-episodes" ] }>
+          <p className={ Styles[ "recent-episodes-heading" ] }>
+            Recent Episodes
+          </p>
+          { recentEpisodes?.results.length && recentEpisodes.results.map( ( ep, id ) => (
+            <a href={ ep.url } target='_blank' onClick={ e => e.stopPropagation() } ref={ id == recentEpisodes.results.length - 1 ? ref : null }>
+              <div className={ Styles[ "episode-container" ] } key={ id }>
+                <img src={ ep.image } alt="" />
+                <div className={ Styles[ "content" ] }>
+                  <p className={ Styles[ "title" ] }>{ ep.title.length > 40 ? ep.title.slice( 0, 40 ) + " ..." : ep.title }</p>
+                  <p className={ Styles[ "number" ] }>Episode { ep.episodeNumber }</p>
+                </div>
+              </div>
+            </a>
+          ) )
+          }
         </div>
-        <RecentEpisodes />
       </div>
     </>
   );

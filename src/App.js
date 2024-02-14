@@ -6,6 +6,7 @@ import SearchPage from './Pages/SearchPage/SearchPage';
 import HomePage from './Pages/HomePage/HomePage';
 import AnimePage from './Pages/AnimePage/AnimePage';
 import { AnimatePresence } from 'framer-motion';
+import AnimeInfoPage from './Pages/AnimeInfoPage/AnimeInfoPage';
 
 function App () {
   return (
@@ -16,6 +17,8 @@ function App () {
             <Route index path='/' element={ <HomePage /> } />
             <Route path='/movies' element={ <SearchPage /> } />
             <Route path='/anime' element={ <AnimePage /> } />
+            <Route path='/anime/:animeID' element={ <AnimeInfoPage /> } />
+
           </Route>
         </Routes>
       </AnimatePresence>

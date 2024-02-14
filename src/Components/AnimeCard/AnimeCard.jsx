@@ -65,7 +65,7 @@ const AnimeCard = ( {
         ) }
       </AnimatePresence> */}
       <a
-        href={ anime.url }
+        href={ `/anime/${ anime.id }` }
         target="_blank"
         className={ Styles.cover }
         onClick={ ( e ) => {
@@ -104,9 +104,9 @@ const AnimeCard = ( {
           </div>
         </div>
 
-        <div className={ Styles[ "hover-info" ] }>
+        {/* <div className={ Styles[ "hover-info" ] }> 
           <div className={ Styles[ "info" ] }>
-            {/* <img src={ animeInfo?.image } alt="poster" /> */ }
+            <img src={ animeInfo?.image } alt="poster" />
             <div className={ Styles[ "content" ] }>
               <p className={ Styles[ "title" ] }>{ animeInfo?.title }</p>
               <div className={ Styles[ "props" ] }>
@@ -132,9 +132,9 @@ const AnimeCard = ( {
             </div>
           </div>
           <p className={ Styles[ "description" ] }>{ animeInfo?.description }</p>
-        </div>
+        </div >*/}
 
-      </a>
+      </a >
 
     </>
   );

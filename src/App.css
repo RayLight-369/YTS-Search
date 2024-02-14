@@ -64,6 +64,7 @@ body {
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
+  background: #110611;
   /* scroll-behavior: smooth; */
 }
 

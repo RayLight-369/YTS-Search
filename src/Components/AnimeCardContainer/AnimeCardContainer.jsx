@@ -6,7 +6,8 @@ import AnimeCard from "../AnimeCard/AnimeCard";
 
 const AnimeCardContainer = ( {
   animes,
-  className
+  className,
+  ref = null
 } ) => {
   // const variants = useMemo(
   //   () => ({
@@ -28,6 +29,7 @@ const AnimeCardContainer = ( {
   return (
     <div
       className={ `${ Styles[ "animes-container" ] } ${ className }` }
+      ref={ ref }
     // variants={variants}
     // initial="initial"
     // animate="animate"
