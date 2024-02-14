@@ -126,15 +126,20 @@ div.names {
 
 p.heading {
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .tag {
   padding: 3.5px 11.5px;
-  background: rgba(82, 66, 84, 1);
+  background: #2E1F2E;
   border-radius: 5px;
   text-align: center;
   font-size: 11.3px;
   transition: 120ms;
+}
+
+.tag[title=genre] {
+  background: rgba(78, 60, 74, 1);
 }
 
 .tag[title=genre]:hover {
