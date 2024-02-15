@@ -1,47 +1,17 @@
 import { memo, useEffect, useState } from "react";
 import Styles from "./AnimeInfoPage.module.css";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import RecentEpisodes from "../../Components/RecentEpisodes/RecentEpisodes";
 import { Helmet } from "react-helmet";
 
 
 
-const EpisodeBrick = memo( ( { ep, setServers } ) => {
-
-  const fetchServers = async () => {
-    try {
-
-      const response = await fetch( "https://anime-api-liart.vercel.app/episode-servers", {
-        method: "POST",
-        body: JSON.stringify( {
-          epId: ep.id
-        } ),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      } );
-
-      if ( response.ok ) {
-        const body = await response.json();
-        setServers( body );
-      }
-
-
-    } catch ( e ) {
-      console.log( e );
-    }
-  };
+const EpisodeBrick = memo( ( { ep, path } ) => {
 
   return (
-    <a className={ Styles[ "episode-brick" ] } onClick={ e => {
-      // e.stopPropagation();
-      e.preventDefault();
-
-      fetchServers();
-
-    } }>
+    <Link to={ `${ path }` } className={ Styles[ "episode-brick" ] }>
       { ep.number }
-    </a>
+    </Link>
   );
 } );
 
@@ -101,12 +71,8 @@ const AnimeInfoPage = () => {
 
 
     if ( animeID ) fetchAnimeInfo( animeID );
+
   }, [ animeID ] );
-
-  useEffect( () => {
-    const iframe = document.querySelector( "iframe." + Styles[ "episode-frame" ] );
-
-  }, [ servers ] );
 
 
   return (
@@ -164,16 +130,14 @@ const AnimeInfoPage = () => {
                   <p className={ Styles[ "title" ] }>Episodes</p>
                   <div className={ Styles[ "episodes" ] }>
                     { animeInfo?.episodes.length && animeInfo.episodes.map( ( ep, key ) => (
-                      <EpisodeBrick ep={ ep } setServers={ setServers } key={ key } />
+                      <EpisodeBrick ep={ ep } path={ `/anime/${ animeID }/${ ep.id }` } setServers={ setServers } key={ key } />
                     ) ) }
                   </div>
                 </div>
               </div>
             </div>
             <div className={ Styles[ "episode-streaming" ] }>
-              { servers && (
-                <iframe className={ Styles[ "episode-frame" ] } src={ servers[ 0 ].url } allowFullScreen frameborder="0"></iframe>
-              ) }
+              <Outlet />
             </div>
           </div>
         ) }

@@ -1,0 +1,8 @@
+iframe.episode-frame {
+  width: 100%;
+  height: max(calc((70vw - 100px) / 1.777), 400px);
+  overflow: hidden;
+  position: relative;
+  transition: 150ms all;
+  background: none !important;
+}
