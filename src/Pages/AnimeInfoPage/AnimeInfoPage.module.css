@@ -261,7 +261,7 @@ div.anime-episode div.episode-streaming {
     align-items: center;
   }
 
-  iframe.episode-frame {
-    /* height: 400px; */
-  }
+  /* iframe.episode-frame {
+    height: 400px;
+  } */
 }
