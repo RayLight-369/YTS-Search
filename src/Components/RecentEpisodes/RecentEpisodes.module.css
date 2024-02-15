@@ -26,6 +26,7 @@ div.episode-container {
   padding: 9px 10px;
   transition: 150ms;
   position: relative;
+  z-index: 2;
   /* transform: translateY(10px) scale(.9);
   opacity: 0;
   animation: translate linear forwards;

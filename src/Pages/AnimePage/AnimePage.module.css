@@ -16,6 +16,19 @@ div.bg {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+div.bg::before {
+  content: " ";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: #573057;
+  top: 90vh;
+  left: -60px;
+  z-index: 2;
+  filter: blur(120px);
 }
 
 div.hero {
@@ -46,26 +59,16 @@ div.anime-section {
   align-items: flex-start;
   justify-content: center;
   padding: 20px 35px;
+  overflow-x: hidden;
   color: #fdfdfd;
   background: #110611;
   box-shadow: 0 -120px 90px #110611;
   position: relative;
 }
 
-div.anime-section::before {
-  content: " ";
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  background: #573057;
-  top: 50px;
-  left: -60px;
-  filter: blur(120px);
-}
-
 div.anime-section::after {
   content: " ";
-  position: absolute;
+  position: fixeds;
   width: 130px;
   height: 170px;
   background: #573057;
@@ -85,6 +88,7 @@ div.anime-container {
   justify-content: flex-start !important;
   width: 100% !important;
   gap: 50px 30px !important;
+  z-index: 2;
 }
 
 p.heading {
