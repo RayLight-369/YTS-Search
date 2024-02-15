@@ -36,7 +36,7 @@ const RecentEpisodes = ( { className } ) => {
         Recent Episodes
       </p>
       { recentEpisodes?.results.length && recentEpisodes.results.map( ( ep, id ) => (
-        <a href={ ep.url } target='_blank' onClick={ e => e.stopPropagation() }>
+        <a href={ `/anime/${ ep.id }/${ ep.episodeId }` } target='_blank' onClick={ e => e.stopPropagation() }>
           <div className={ Styles[ "episode-container" ] } key={ id }>
             <img src={ ep.image } alt="" />
             <div className={ Styles[ "content" ] }>
