@@ -39,17 +39,33 @@ const Episode = () => {
   }, [ epID, animeID ] );
 
   useEffect( () => {
+    if ( servers ) {
 
-    const handleEvent = () => {
-      console.log( ref.current );
-      ref.current.scrollIntoView( {
-        behavior: "smooth"
-      } );
-    };
+      let iframe;
 
-    if ( ref.current ) handleEvent();
+      // const handleEvent = () => {
+      //   console.log( ref.current );
+      //   ref.current.scrollIntoView( {
+      //     behavior: "smooth"
+      //   } );
+      //   iframe.scrollIntoView( {
+      //     behavior: "smooth"
+      //   } );
+      // };
 
-  }, [ ref, ref.current ] );
+      const timeOut = setTimeout( () => {
+        iframe = document.querySelector( "iframe." + Styles[ "episode-iframe" ] );
+
+        if ( iframe || ref.current ) {
+          ref?.current?.scrollIntoView( { behavior: "smooth" } );
+          iframe?.scrollIntoView( { behavior: "smooth" } );
+        }
+
+        clearTimeout( timeOut );
+      }, 500 );
+    }
+
+  }, [ ref, ref.current, servers ] );
 
   return (
     <>
