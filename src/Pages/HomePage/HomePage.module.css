@@ -1,4 +1,4 @@
-div.loader{
+div.loader {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -10,7 +10,7 @@ div.loader{
 
 section.home-section {
   background-color: #100427;
-  background: url("../../Assets/Imgs/bg.png");
+  background: url("../../Assets/Imgs/bg-10-op1.png");
   background-position: fixed;
   background-size: cover;
   background-repeat: no-repeat;
@@ -25,7 +25,7 @@ div.overlay {
   left: 0;
   width: 100vw;
   height: 100vh;
-  backdrop-filter: blur(7px);
+  /* backdrop-filter: blur(7px); */
 }
 
 div.container {
