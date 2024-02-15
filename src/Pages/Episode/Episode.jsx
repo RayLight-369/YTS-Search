@@ -41,6 +41,7 @@ const Episode = () => {
   useEffect( () => {
 
     const handleEvent = () => {
+      console.log( ref.current );
       ref.current.scrollIntoView( {
         behavior: "smooth"
       } );
