@@ -242,10 +242,11 @@ div.anime-episode div.episode-streaming {
 
 iframe.episode-frame {
   width: 100%;
-  height: calc((70vw - 100px) / 1.777);
+  height: max(calc((70vw - 100px) / 1.777), 400px);
   overflow: hidden;
   position: relative;
   transition: 150ms all;
+  background: none !important;
 }
 
 @media (max-width: 768px) {
@@ -270,10 +271,6 @@ iframe.episode-frame {
   }
 
   iframe.episode-frame {
-    width: 100%;
-    height: calc((70vw - 100px) / 1.777);
-    /* overflow: hidden; */
-    position: relative;
-    transition: 150ms all;
+    height: 400px;
   }
 }
