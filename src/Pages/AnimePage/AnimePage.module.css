@@ -98,7 +98,7 @@ button.load-more-btn {
   position: relative;
   transform: translateX(-50%);
   border: none;
-  background: #573057;
+  background: rgb(96 70 111);
   color: #fdfefd;
   top: 20px;
   border-radius: 6px;

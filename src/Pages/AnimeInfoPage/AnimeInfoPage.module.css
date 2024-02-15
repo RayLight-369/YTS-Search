@@ -11,7 +11,7 @@ div#anime-info {
 
 div#anime-info::before {
   content: " ";
-  position: fixed;
+  position: absolute;
   width: 200px;
   height: 200px;
   background: #573057;
@@ -23,7 +23,7 @@ div#anime-info::before {
 
 div#anime-info::after {
   content: " ";
-  position: fixed;
+  position: absolute;
   width: 130px;
   height: 200px;
   background: rgba(87, 50, 87, 1);
@@ -42,6 +42,7 @@ div.content {
   background: #110611;
   position: relative;
   top: 100px;
+  /* z-index: 3; */
 }
 
 div.content div.anime-section {
