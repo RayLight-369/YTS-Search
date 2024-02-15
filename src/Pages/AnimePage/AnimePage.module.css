@@ -58,7 +58,7 @@ div.anime-section {
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  padding: 20px 35px;
+  padding: 20px 35px 58px 35px;
   overflow-x: hidden;
   color: #fdfdfd;
   background: #110611;
