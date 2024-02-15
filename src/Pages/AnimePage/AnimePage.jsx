@@ -12,6 +12,8 @@ const AnimePage = () => {
   const [ input, setInput ] = useState( "" );
   const [ searchResults, setSearchResults ] = useState( null );
   const [ currentPageType, setCurrentPageType ] = useState( TYPES.TOP_AIRING );
+  const [ loadMore, setLoadMore ] = useState( false );
+  const [ paused, setPaused ] = useState( true );
   const ref = useRef();
   const isVisible = useOnScreen( ref );
   const [ currentPage, setCurrentPage ] = useState( {
@@ -20,16 +22,21 @@ const AnimePage = () => {
     pageNum: 1
   } );
 
-  useEffect( () => {
-    const handleScroll = e => {
-      const scrollY = document.documentElement.scrollTop;
-    };
-  }, [] );
+  // useEffect( () => {
+  //   const handleScroll = e => {
+  //     const scrollY = document.documentElement.scrollTop;
+  //   };
+  // }, [] );
 
   const fetchTopAiring = async ( { controller, page = 1 } ) => {
+    setPaused( true );
+
     try {
       const response = await fetch( "https://anime-api-liart.vercel.app/top-airing", {
         method: "POST",
+        body: JSON.stringify( {
+          page
+        } ),
         headers: {
           "Content-Type": "application/json" // Set content type header
         },
@@ -41,8 +48,8 @@ const AnimePage = () => {
         // setCurrentPageType( TYPES.TOP_AIRING );
         setCurrentPage( {
           type: TYPES.TOP_AIRING,
-          hasNextPage: !!body.hasNextPage,
-          pageNum: 1
+          hasNextPage: body.hasNextPage,
+          pageNum: page
         } );
 
         if ( page == 1 ) setSearchResults( body );
@@ -50,17 +57,22 @@ const AnimePage = () => {
           currentPage: body.currentPage,
           hasNextPage: body.hasNextPage,
           results: [
-            ...prev.results,
+            ...( prev?.results?.length ? prev.results : [] ),
             ...body.results
           ]
         } ) );
       }
     } catch ( e ) {
       if ( e.name != "AbortError" ) console.log( e );
+    } finally {
+      setPaused( false );
+      setLoadMore( false );
     }
   };
 
   const fetchAnime = async ( { controller, query = input, page = 1 } ) => {
+    setPaused( true );
+
     try {
       const response = await fetch( "https://anime-api-liart.vercel.app/search", {
         method: "POST",
@@ -80,7 +92,7 @@ const AnimePage = () => {
         setCurrentPage( {
           type: TYPES.SEARCH,
           hasNextPage: !!body.hasNextPage,
-          pageNum: 1
+          pageNum: page
         } );
 
         if ( page == 1 ) setSearchResults( body );
@@ -95,6 +107,9 @@ const AnimePage = () => {
       }
     } catch ( e ) {
       if ( e.name != "AbortError" ) console.log( e );
+    } finally {
+      setPaused( false );
+      setLoadMore( false );
     }
   };
 
@@ -103,6 +118,16 @@ const AnimePage = () => {
       fetchAnime( { controller: null } );
     }
   };
+
+  useEffect( () => {
+    if ( loadMore === false ) return;
+
+    if ( currentPage.hasNextPage && currentPage.type === TYPES.TOP_AIRING ) {
+      fetchTopAiring( { controller: null, page: currentPage.pageNum + 1 } );
+    } else if ( currentPage.hasNextPage && currentPage.type === TYPES.SEARCH ) {
+      fetchAnime( { controller: null, page: currentPage.pageNum + 1 } );
+    }
+  }, [ loadMore ] );
 
 
 
@@ -115,7 +140,8 @@ const AnimePage = () => {
 
     } else {
 
-      fetchTopAiring( { controller: null } );
+      // for ( let i = 1; i <= 3; i++, fetchTopAiring( { controller: null, page: i } ) );
+      fetchTopAiring( { controller: null, page: currentPage.pageNum } );
 
     }
 
@@ -153,8 +179,13 @@ const AnimePage = () => {
           ) : (
             <p className={ Styles[ "heading" ] } >Search Results</p>
           ) }
-          { searchResults && searchResults.results.length && (
-            <AnimeCardContainer animes={ searchResults.results } className={ Styles[ "anime-container" ] } />
+          { searchResults && searchResults?.results.length && (
+            <>
+              <AnimeCardContainer animes={ searchResults.results } className={ Styles[ "anime-container" ] } />
+              { currentPage.hasNextPage && (
+                <button type='button' className={ Styles[ 'load-more-btn' ] } onClick={ () => setLoadMore( true ) } disabled={ paused }>Load More</button>
+              ) }
+            </>
           ) }
         </div>
         <RecentEpisodes />

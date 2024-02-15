@@ -6,22 +6,22 @@ import Styles from "./Navbar.module.css";
 const Navbar = () => {
   return (
     <>
-      <header className={Styles.header}>
-        <div className={Styles.logo}>
-          <img src={require("../../Assets/Imgs/logo.png")} alt="logo" />
+      <header className={ Styles.header }>
+        <div className={ Styles.logo }>
+          <img src={ require( "../../Assets/Imgs/logo.png" ) } alt="logo" />
         </div>
-        <nav className={Styles.nav}>
-          {NavbarLinks.map((link, index) => (
+        <nav className={ Styles.nav }>
+          { NavbarLinks.map( ( link, index ) => (
             <NavLink
-              className={({ isActive }) =>
-                isActive ? `${Styles.link} ${Styles.active}` : Styles.link
+              className={ ( { isActive } ) =>
+                isActive ? `${ Styles.link } ${ Styles.active }` : Styles.link
               }
-              to={link.link}
-              key={index}
+              to={ link.link }
+              key={ index }
             >
-              {link.name}
+              { link.name }
             </NavLink>
-          ))}
+          ) ) }
         </nav>
       </header>
       <Outlet />

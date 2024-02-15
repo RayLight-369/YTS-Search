@@ -11,7 +11,7 @@ div#anime-info {
 
 div#anime-info::before {
   content: " ";
-  position: absolute;
+  position: fixed;
   width: 200px;
   height: 200px;
   background: #573057;
@@ -23,7 +23,7 @@ div#anime-info::before {
 
 div#anime-info::after {
   content: " ";
-  position: absolute;
+  position: fixed;
   width: 130px;
   height: 200px;
   background: rgba(87, 50, 87, 1);
@@ -186,11 +186,10 @@ div.episodes {
   gap: 7px;
   flex-flow: wrap;
   max-height: 300px;
+  min-height: 40px;
   overflow: auto;
   position: relative;
-  padding-right: 5px;
-  /* height: 500px; */
-  /* background: #872b2b; */
+  padding: 5px;
 }
 
 div.episodes::-webkit-scrollbar {

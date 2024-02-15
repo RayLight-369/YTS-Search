@@ -60,10 +60,14 @@ a {
   --accent-color: #C891FF;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   background: #110611;
   /* scroll-behavior: smooth; */
 }

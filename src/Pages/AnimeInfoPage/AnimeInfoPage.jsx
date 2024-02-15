@@ -128,7 +128,7 @@ const AnimeInfoPage = () => {
               <div className={ Styles[ "episodes-section" ] }>
                 <p className={ Styles[ "title" ] }>Episodes</p>
                 <div className={ Styles[ "episodes" ] }>
-                  { !!animeInfo?.episodes.length && Array.from( { length: 130 }, ( c, i ) => ( { number: i + 1 } ) ).map( ( ep, key ) => (
+                  { animeInfo?.episodes.length && animeInfo.episodes.map( ( ep, key ) => (
                     <EpisodeBrick ep={ ep } key={ key } />
                   ) ) }
                 </div>

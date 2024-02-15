@@ -91,6 +91,24 @@ p.heading {
   font-family: AnimeAce;
 }
 
+button.load-more-btn {
+  width: 100px;
+  height: 30px;
+  left: 50%;
+  position: relative;
+  transform: translateX(-50%);
+  border: none;
+  background: #573057;
+  color: #fdfefd;
+  top: 20px;
+  border-radius: 6px;
+  transition: 120ms transform;
+}
+
+button.load-more-btn:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
 @keyframes translate {
   to {
     opacity: 1;

@@ -8,7 +8,7 @@ div.card {
   box-shadow: 8px 4px 142.6px rgba(228, 183, 255, 0.20);
   position: relative;
   z-index: 10;
-  border-radius: 5px;
+  border-radius: 15px;
   overflow: hidden;
 }
 

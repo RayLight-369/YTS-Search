@@ -4,7 +4,7 @@ div.card {
   width: fit-content;
   height: 300px;
   width: 180px;
-  filter: drop-shadow(0 0 50.6px rgba(228, 183, 255, .1));
+  box-shadow: 0 0 50.6px rgba(228, 183, 255, .1);
   position: relative;
   z-index: 10;
   border-radius: 20px;
