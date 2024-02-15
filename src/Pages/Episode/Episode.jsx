@@ -39,16 +39,14 @@ const Episode = () => {
   }, [ epID, animeID ] );
 
   useEffect( () => {
-    const iframe = document.querySelector( "iframe." + Styles[ "episode-frame" ] );
-    console.log( iframe );
 
     const handleEvent = () => {
-      iframe?.scrollIntoView( {
+      ref.current.scrollIntoView( {
         behavior: "smooth"
       } );
     };
 
-    handleEvent();
+    if ( ref.current ) handleEvent();
 
   }, [ ref, ref.current ] );
 
