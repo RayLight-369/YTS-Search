@@ -53,6 +53,9 @@ div.content div.anime-section {
   border-radius: 17px;
   overflow: auto;
   background: rgba(35, 22, 35, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
 div.content > div.anime-section > div > div > img {
@@ -72,6 +75,10 @@ div.anime-content {
   width: 100%;
   font-family: Quicksand;
   /* background: #0000004d; */
+}
+
+div.anime-content > img {
+  border-radius: 12px;
 }
 
 div.info-content {
@@ -214,6 +221,33 @@ a.episode-brick:hover {
   transform: scale(1.08);
 }
 
+div.anime-episode {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+div.anime-episode div.episode-streaming {
+  /* background: rgba(35, 22, 35, 0.5); */
+  border-radius: 17px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 150ms all;
+  position: relative;
+  overflow: hidden;
+}
+
+iframe.episode-frame {
+  width: 100%;
+  height: calc((70vw - 100px) / 1.777);
+  overflow: hidden;
+  position: relative;
+  transition: 150ms all;
+}
+
 @media (max-width: 768px) {
   div.content div.anime-section {
     width: calc(100vw - 40px);
@@ -233,5 +267,13 @@ a.episode-brick:hover {
   div.anime-content {
     flex-direction: column;
     align-items: center;
+  }
+
+  iframe.episode-frame {
+    width: 100%;
+    height: calc((70vw - 100px) / 1.777);
+    /* overflow: hidden; */
+    position: relative;
+    transition: 150ms all;
   }
 }

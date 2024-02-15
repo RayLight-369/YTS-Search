@@ -6,9 +6,40 @@ import { Helmet } from "react-helmet";
 
 
 
-const EpisodeBrick = memo( ( { ep } ) => {
+const EpisodeBrick = memo( ( { ep, setServers } ) => {
+
+  const fetchServers = async () => {
+    try {
+
+      const response = await fetch( "https://anime-api-liart.vercel.app/episode-servers", {
+        method: "POST",
+        body: JSON.stringify( {
+          epId: ep.id
+        } ),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      } );
+
+      if ( response.ok ) {
+        const body = await response.json();
+        setServers( body );
+      }
+
+
+    } catch ( e ) {
+      console.log( e );
+    }
+  };
+
   return (
-    <a href="" className={ Styles[ "episode-brick" ] }>
+    <a className={ Styles[ "episode-brick" ] } onClick={ e => {
+      // e.stopPropagation();
+      e.preventDefault();
+
+      fetchServers();
+
+    } }>
       { ep.number }
     </a>
   );
@@ -18,6 +49,7 @@ const AnimeInfoPage = () => {
   const { animeID } = useParams();
   const [ animeInfo, setAnimeInfo ] = useState( null );
   const [ basicInfo, setBasicInfo ] = useState( null );
+  const [ servers, setServers ] = useState( null );
   const Url = useLocation();
   const [ ogValues, setOgValues ] = useState( {
     title: "Anime",
@@ -72,8 +104,10 @@ const AnimeInfoPage = () => {
   }, [ animeID ] );
 
   useEffect( () => {
-    console.log( animeInfo );
-  }, [ animeInfo ] );
+    const iframe = document.querySelector( "iframe." + Styles[ "episode-frame" ] );
+
+  }, [ servers ] );
+
 
   return (
 
@@ -89,50 +123,57 @@ const AnimeInfoPage = () => {
       </Helmet>
       <div className={ Styles[ "content" ] }>
         { animeInfo && (
-          <div className={ Styles[ "anime-section" ] }>
-            <div className={ Styles[ "specific-anime-info" ] }>
-              <div className={ Styles[ "anime-content" ] }>
-                <img src={ animeInfo.image } alt="poster" width={ 340 } height={ 490 } />
-                <div className={ Styles[ "info-content" ] }>
-                  <p className={ Styles[ "title" ] }>{ animeInfo.title }</p>
-                  <div className={ Styles[ "sub-info" ] }>
-                    <div className={ Styles[ "genre" ] }>
-                      <p className={ Styles[ "heading" ] }>Genre:</p>
-                      <div className={ Styles[ "genres" ] }>
-                        { animeInfo && animeInfo.genres.map( ( genre, key ) => (
-                          <span className={ Styles[ "tag" ] } title="genre" key={ key }>{ genre }</span>
-                        ) ) }
+          <div className={ Styles[ "anime-episode" ] }>
+            <div className={ Styles[ "anime-section" ] }>
+              <div className={ Styles[ "specific-anime-info" ] }>
+                <div className={ Styles[ "anime-content" ] }>
+                  <img src={ animeInfo.image } alt="poster" width={ 340 } height={ 490 } />
+                  <div className={ Styles[ "info-content" ] }>
+                    <p className={ Styles[ "title" ] }>{ animeInfo.title }</p>
+                    <div className={ Styles[ "sub-info" ] }>
+                      <div className={ Styles[ "genre" ] }>
+                        <p className={ Styles[ "heading" ] }>Genre:</p>
+                        <div className={ Styles[ "genres" ] }>
+                          { animeInfo && animeInfo.genres.map( ( genre, key ) => (
+                            <span className={ Styles[ "tag" ] } title="genre" key={ key }>{ genre }</span>
+                          ) ) }
+                        </div>
                       </div>
-                    </div>
-                    { basicInfo && Object.entries( basicInfo ).map( ( [ key, val ] ) => (
-                      <div className={ Styles[ "info" ] } key={ val }>
-                        <p className={ Styles[ "heading" ] }>{ key }: </p>
-                        <p className={ Styles[ "tag" ] }>{ val }</p>
+                      { basicInfo && Object.entries( basicInfo ).map( ( [ key, val ] ) => (
+                        <div className={ Styles[ "info" ] } key={ val }>
+                          <p className={ Styles[ "heading" ] }>{ key }: </p>
+                          <p className={ Styles[ "tag" ] }>{ val }</p>
+                        </div>
+                      ) ) }
+                      <div className={ Styles[ "other-names" ] }>
+                        <p className={ Styles[ "heading" ] }>Other Names:</p>
+                        <div className={ Styles[ "names" ] }>
+                          { animeInfo && animeInfo.otherName.split( "," ).map( ( name, key ) => (
+                            <span className={ Styles[ "tag" ] } title="name" key={ key }>{ name }</span>
+                          ) ) }
+                        </div>
                       </div>
-                    ) ) }
-                    <div className={ Styles[ "other-names" ] }>
-                      <p className={ Styles[ "heading" ] }>Other Names:</p>
-                      <div className={ Styles[ "names" ] }>
-                        { animeInfo && animeInfo.otherName.split( "," ).map( ( name, key ) => (
-                          <span className={ Styles[ "tag" ] } title="name" key={ key }>{ name }</span>
-                        ) ) }
+                      <div className={ Styles[ "desc" ] }>
+                        <p className={ Styles[ "heading" ] }>Description: </p>
+                        <p className={ Styles[ "tag" ] }>{ animeInfo.description }</p>
                       </div>
-                    </div>
-                    <div className={ Styles[ "desc" ] }>
-                      <p className={ Styles[ "heading" ] }>Description: </p>
-                      <p className={ Styles[ "tag" ] }>{ animeInfo.description }</p>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className={ Styles[ "episodes-section" ] }>
-                <p className={ Styles[ "title" ] }>Episodes</p>
-                <div className={ Styles[ "episodes" ] }>
-                  { animeInfo?.episodes.length && animeInfo.episodes.map( ( ep, key ) => (
-                    <EpisodeBrick ep={ ep } key={ key } />
-                  ) ) }
+                <div className={ Styles[ "episodes-section" ] }>
+                  <p className={ Styles[ "title" ] }>Episodes</p>
+                  <div className={ Styles[ "episodes" ] }>
+                    { animeInfo?.episodes.length && animeInfo.episodes.map( ( ep, key ) => (
+                      <EpisodeBrick ep={ ep } setServers={ setServers } key={ key } />
+                    ) ) }
+                  </div>
                 </div>
               </div>
+            </div>
+            <div className={ Styles[ "episode-streaming" ] }>
+              { servers && (
+                <iframe className={ Styles[ "episode-frame" ] } src={ servers[ 0 ].url } allowFullScreen frameborder="0"></iframe>
+              ) }
             </div>
           </div>
         ) }
