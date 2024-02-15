@@ -62,6 +62,7 @@ p.note {
   width: max(80%, 310px);
   text-align: center;
   color: #E9D8FF;
+  z-index: 1;
 }
 
 div.movies {
