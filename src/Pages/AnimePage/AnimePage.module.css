@@ -68,7 +68,7 @@ div.anime-section {
 
 div.anime-section::after {
   content: " ";
-  position: fixeds;
+  position: fixed;
   width: 130px;
   height: 170px;
   background: #573057;
