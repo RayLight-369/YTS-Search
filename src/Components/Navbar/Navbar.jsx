@@ -20,7 +20,7 @@ const Navbar = () => {
 
     async function PostView () {
       try {
-        const response = await fetch( "http://localhost:5260/num-of-viewers", {
+        const response = await fetch( "https://anime-api-liart.vercel.app/num-of-viewers", {
           method: "POST",
           body: JSON.stringify( {
             visited: !!getCookie( "deviceVisited" )
