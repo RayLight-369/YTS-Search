@@ -124,6 +124,7 @@ div.viewer-count {
   bottom: 50px;
   right: 70px;
   display: flex;
+  width: 270px;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
@@ -188,6 +189,7 @@ div.viewer-count {
     z-index: 100;
     color: white;
     bottom: 105px;
+    width: 100%;
     left: 0;
     font-size: 25px;
     justify-content: center;
