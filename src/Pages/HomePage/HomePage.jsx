@@ -53,7 +53,7 @@ const HomePage = () => {
 
     const handleStateChange = ( e ) => {
       setStateLoaded();
-      fetch( "https://anime-api-liart.vercel.app/num-of-viewers" ).then( data => data.json() ).then( ( body ) => setViewersCount( +body.count ) );
+      fetch( "https://anime-api-liart.vercel.app/num-of-viewers" ).then( data => data.json() ).then( ( body ) => setViewersCount( body.count ) );
     };
 
     document.addEventListener( "readystatechange", handleStateChange );
