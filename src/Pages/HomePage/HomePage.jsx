@@ -4,9 +4,41 @@ import { AnimatePresence, motion } from "framer-motion";
 import { SocialLionks } from "../../Constants";
 import Loader from "../../Assets/Imgs/loader.gif";
 
+
+const NumberTransition = ( { targetNumber, duration, className } ) => {
+  const [ currentNumber, setCurrentNumber ] = useState( 0 );
+
+  useEffect( () => {
+    let startTimestamp;
+    let requestId;
+
+    const updateNumber = ( timestamp ) => {
+      if ( !startTimestamp ) startTimestamp = timestamp;
+      const progress = timestamp - startTimestamp;
+      const increment = ( targetNumber - currentNumber ) * ( progress / duration );
+      const newNumber = currentNumber + increment;
+
+      if ( progress < duration && newNumber < targetNumber ) {
+        setCurrentNumber( newNumber );
+        requestId = requestAnimationFrame( updateNumber );
+      } else {
+        setCurrentNumber( targetNumber );
+      }
+    };
+
+    requestId = requestAnimationFrame( updateNumber );
+
+    return () => {
+      cancelAnimationFrame( requestId );
+    };
+  }, [ currentNumber, targetNumber, duration ] );
+
+  return <span className={ className }>{ Math.round( currentNumber ) }</span>;
+};
+
 const HomePage = () => {
   const [ loaded, setLoaded ] = useState( false );
-  const [ oneCycleComplete, setAnimation ] = useState( false );
+  // const [ oneCycleComplete, setAnimation ] = useState( false );
 
   useEffect( () => {
     function setStateLoaded () {
@@ -51,6 +83,7 @@ const HomePage = () => {
     <>
       <section className={ Styles[ "home-section" ] }>
         <div className={ Styles[ "overlay" ] }></div>
+        <NumberTransition duration={ 700 } targetNumber={ 21000 } />
         <AnimatePresence mode="wait">
           { !loaded && (
             <motion.div
@@ -58,7 +91,7 @@ const HomePage = () => {
               initial={ { opacity: 0 } }
               animate={ { opacity: 1 } }
               exit={ { opacity: 0 } }
-              onAnimationComplete={ () => setAnimation( true ) }
+            // onAnimationComplete={ () => setAnimation( true ) }
             >
               <img
                 src={ Loader }

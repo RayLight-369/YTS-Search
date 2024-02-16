@@ -1,9 +1,54 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavbarLinks } from "../../Constants/index";
 import { NavLink, Outlet } from "react-router-dom";
 import Styles from "./Navbar.module.css";
 
 const Navbar = () => {
+
+  useEffect( () => {
+
+    const Controller = new AbortController();
+
+    function getCookie ( cookieName ) {
+      const cookie = document.cookie
+        .split( ';' )
+        .map( cookie => cookie.trim().split( '=' ) )
+        .find( ( [ name ] ) => name === cookieName );
+
+      return cookie ? cookie[ 1 ] : null;
+    }
+
+    async function PostView () {
+      try {
+        const response = await fetch( "http://localhost:5260/num-of-viewers", {
+          method: "POST",
+          body: JSON.stringify( {
+            visited: !!getCookie( "deviceVisited" )
+          } ),
+          headers: {
+            "Content-Type": "application/json"
+          },
+          signal: Controller.signal
+        } );
+
+        if ( response.ok ) {
+          const body = await response.json();
+          console.log( body );
+          document.cookie = "deviceVisited=true";
+        }
+      } catch ( e ) {
+        if ( e.name != "AbortError" ) console.log( e );
+      }
+    }
+
+    PostView();
+    console.log( "rendered" );
+
+    return () => {
+      Controller.abort();
+    };
+  }, [] );
+
   return (
     <>
       <header className={ Styles.header }>
