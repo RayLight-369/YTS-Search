@@ -33,18 +33,21 @@ const NumberTransition = ( { targetNumber, duration, className } ) => {
     };
   }, [ currentNumber, targetNumber, duration ] );
 
-  return <span className={ className }>{ Math.round( currentNumber ) }</span>;
+  return <p className={ className }>{ Math.round( currentNumber ) }</p>;
 };
 
 const HomePage = () => {
   const [ loaded, setLoaded ] = useState( false );
+  const [ viewersCount, setViewersCount ] = useState( 0 );
   // const [ oneCycleComplete, setAnimation ] = useState( false );
 
   useEffect( () => {
+
+    fetch( "https://anime-api-liart.vercel.app/num-of-viewers" ).then( data => data.text() ).then( count => setViewersCount( +count ) );
+
     function setStateLoaded () {
       if ( document.readyState == "complete" ) {
         setLoaded( true );
-        console.log( "loaded" );
       }
     }
 
@@ -83,7 +86,6 @@ const HomePage = () => {
     <>
       <section className={ Styles[ "home-section" ] }>
         <div className={ Styles[ "overlay" ] }></div>
-        <NumberTransition duration={ 700 } targetNumber={ 21000 } />
         <AnimatePresence mode="wait">
           { !loaded && (
             <motion.div
@@ -151,6 +153,16 @@ const HomePage = () => {
                   <img src={ social.src } alt="" />
                 </motion.a>
               ) ) }
+            </motion.div>
+            <motion.div
+              className={ Styles[ "viewer-count" ] }
+              variants={ socialLinksVariants }
+              animate="animate"
+              initial="initial"
+              transition={ { staggerChildren: 0.2, duration: 1 } }
+            >
+              <p className={ Styles[ "title" ] }>Total Viewers: </p>
+              <NumberTransition className={ Styles[ "count" ] } duration={ 700 } targetNumber={ viewersCount } />
             </motion.div>
           </>
         ) }
