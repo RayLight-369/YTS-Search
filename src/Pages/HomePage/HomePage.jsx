@@ -53,7 +53,9 @@ const HomePage = () => {
 
     const handleStateChange = ( e ) => {
       setStateLoaded();
-      fetch( "https://anime-api-liart.vercel.app/num-of-viewers" ).then( data => data.json() ).then( ( body ) => setViewersCount( body.count ) );
+      fetch( "https://anime-api-liart.vercel.app/num-of-viewers" ).then( data => data.json() ).then( ( body ) => {
+        setViewersCount( body.count );
+      } );
     };
 
     document.addEventListener( "readystatechange", handleStateChange );
@@ -79,6 +81,30 @@ const HomePage = () => {
       // opacity: 1,
     },
   };
+
+  useEffect( () => {
+
+    function getCookie ( cookieName ) {
+      const cookie = document.cookie
+        .split( ';' )
+        .map( cookie => cookie.trim().split( '=' ) )
+        .find( ( [ name ] ) => name === cookieName );
+
+      return cookie ? cookie[ 1 ] : null;
+    }
+
+    if ( !viewersCount ) {
+
+      if ( getCookie( "visitedCount" ) ) {
+        setViewersCount( parseInt( getCookie( "visitedCount" ) ) );
+        return;
+      }
+
+      fetch( "https://anime-api-liart.vercel.app/num-of-viewers" ).then( data => data.json() ).then( ( body ) => {
+        setViewersCount( body.count );
+      } );
+    }
+  }, [ viewersCount ] );
 
   return (
     // <AnimatePresence mode='wait'>

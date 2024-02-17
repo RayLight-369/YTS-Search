@@ -35,6 +35,7 @@ const Navbar = () => {
           const body = await response.json();
           console.log( body );
           document.cookie = "deviceVisited=true";
+          document.cookie = "visitedCount=" + body.count;
         }
       } catch ( e ) {
         if ( e.name != "AbortError" ) console.log( e );
