@@ -73,13 +73,6 @@ const MovieCard = ( {
 
   return (
     <>
-      {/* <AnimatePresence mode="wait">
-        { showTrailer && (
-          <Modal handleClose={ () => setShowTrailer( false ) }>
-            <iframe src={ `https://www.youtube.com/embed/${ movie[ "yt_trailer_code" ] }?rel=0&wmode=transparent&border=0&autoplay=1&iv_load_policy=3` } width={ 500 } height={ 450 } />
-          </Modal>
-        ) }
-      </AnimatePresence> */}
       <a
         href={ `https://www.imdb.com/title/${ movie.imdb_code }` }
         className={ Styles.cover }
@@ -91,7 +84,7 @@ const MovieCard = ( {
           className={ Styles.card }
           transition={ {
             delay: 0,
-            // duration: 0.2,
+            duration: 0.07,
             type: "spring",
             damping: 9,
           } }
