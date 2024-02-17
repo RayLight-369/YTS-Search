@@ -9,7 +9,7 @@ div.card {
   z-index: 10;
   border-radius: 20px;
   overflow: clip;
-  transition: 200ms cubic-bezier(0.4, 0, 1, 1);
+  /* transition: 200ms cubic-bezier(0.4, 0, 1, 1); */
 }
 
 a.cover {
@@ -45,10 +45,10 @@ div.card > div.image {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(12, 1, 15, 1) 87.16665506362915%, rgba(7, 0, 9, 1) 100%)
 }
 
-div.card:hover {
+/* div.card:hover {
   z-index: 100000;
   transform: scale(1.04);
-}
+} */
 
 div.hover-info {
   position: absolute;

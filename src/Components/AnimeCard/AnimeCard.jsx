@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import Styles from "./AnimeCard.module.css";
 import { ReactComponent as Star } from "../../Assets/Imgs/Star.svg";
 import { ReactComponent as Language } from "../../Assets/Imgs/language.svg";
@@ -8,12 +8,14 @@ import Options from "../../Assets/Imgs/options.svg";
 import { ReactComponent as Play } from "../../Assets/Imgs/play.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import Modal from "../Modal/Modal";
+import useScrollDirection from "../../Hooks/useScrollDirection";
 
 const AnimeCard = ( {
   anime
 } ) => {
 
   const [ showOptions, setShowOptions ] = useState( false );
+  const { scrollDirection, scrollSpeed } = useScrollDirection();
   const [ animeInfo, setAnimeInfo ] = useState( null );
   const [ basicInfo, setBasicInfo ] = useState( null );
 
@@ -57,13 +59,6 @@ const AnimeCard = ( {
 
   return (
     <>
-      {/* <AnimatePresence mode="wait">
-        { showTrailer && (
-          <Modal handleClose={ () => setShowTrailer( false ) }>
-            <iframe src={ `https://www.youtube.com/embed/${ movie[ "yt_trailer_code" ] }?rel=0&wmode=transparent&border=0&autoplay=1&iv_load_policy=3` } width={ 500 } height={ 450 } />
-          </Modal>
-        ) }
-      </AnimatePresence> */}
       <a
         href={ `/anime/${ anime.id }` }
         target="_blank"
@@ -75,15 +70,15 @@ const AnimeCard = ( {
       >
 
 
-        <div
+        <motion.div
           className={ Styles.card }
-        // transition={ {
-        //   delay: 0,
-        //   // duration: 0.2,
-        //   type: "spring",
-        //   damping: 9,
-        // } }
-        // whileHover={ { scale: 1.04 } }
+          transition={ {
+            delay: 0,
+            duration: 0.2,
+            type: "spring",
+            damping: 9,
+          } }
+          whileHover={ { scale: 1.04 } }
         >
           <div className={ Styles.image }>
             <img src={ anime.image } alt="" />
@@ -102,7 +97,7 @@ const AnimeCard = ( {
             </div>
 
           </div>
-        </div>
+        </motion.div>
 
         {/* <div className={ Styles[ "hover-info" ] }> 
           <div className={ Styles[ "info" ] }>
