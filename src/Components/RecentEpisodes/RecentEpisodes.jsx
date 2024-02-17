@@ -1,14 +1,22 @@
 import { useState, useEffect, memo } from "react";
 import Styles from "./RecentEpisodes.module.css";
+import { TYPES } from "../../Constants";
 
-const RecentEpisodes = ( { className } ) => {
+const RecentEpisodes = ( { className, loadMore, setLoadMore } ) => {
   const [ recentEpisodes, setRecentEpisodes ] = useState( null );
+  const [ currentPage, setCurrentPage ] = useState( {
+    type: TYPES.RECENT_EPISODES,
+    hasNextPage: false,
+    pageNum: 1
+  } );
 
-
-  const fetchRecentEpisodes = async ( { controller } ) => {
+  const fetchRecentEpisodes = async ( { controller, page = 1 } ) => {
     try {
       const response = await fetch( "https://anime-api-liart.vercel.app/recent-episodes", {
         method: "POST",
+        body: JSON.stringify( {
+          page
+        } ),
         headers: {
           "Content-Type": "application/json" // Set content type header
         },
@@ -17,10 +25,26 @@ const RecentEpisodes = ( { className } ) => {
 
       if ( response.ok ) {
         const body = await response.json();
-        setRecentEpisodes( body );
+        setCurrentPage( {
+          type: TYPES.RECENT_EPISODES,
+          hasNextPage: body.hasNextPage,
+          pageNum: body.currentPage
+        } );
+
+        if ( page == 1 ) setRecentEpisodes( body );
+        else setRecentEpisodes( prev => ( {
+          currentPage: body.currentPage,
+          hasNextPage: body.hasNextPage,
+          results: [
+            ...prev.results,
+            ...body.results
+          ]
+        } ) );
       }
     } catch ( e ) {
       if ( e.name != "AbortError" ) console.log( e );
+    } finally {
+      setLoadMore( false );
     }
   };
 
@@ -29,6 +53,12 @@ const RecentEpisodes = ( { className } ) => {
     fetchRecentEpisodes( { controller: null } );
 
   }, [] );
+
+  useEffect( () => {
+    if ( loadMore ) {
+      fetchRecentEpisodes( { controller: null, page: currentPage.pageNum + 1 } );
+    }
+  }, [ loadMore ] );
 
   return (
     <div className={ `${ Styles[ "recent-episodes" ] } ${ className }` }>

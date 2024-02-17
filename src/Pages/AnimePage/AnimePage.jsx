@@ -14,6 +14,7 @@ const AnimePage = () => {
   const [ currentPageType, setCurrentPageType ] = useState( TYPES.TOP_AIRING );
   const [ loadMore, setLoadMore ] = useState( false );
   const [ paused, setPaused ] = useState( true );
+  const [ loadMoreRecent, setLoadMoreRecent ] = useState( false );
   const ref = useRef();
   const isVisible = useOnScreen( ref );
   const [ currentPage, setCurrentPage ] = useState( {
@@ -127,6 +128,10 @@ const AnimePage = () => {
     } else if ( currentPage.hasNextPage && currentPage.type === TYPES.SEARCH ) {
       fetchAnime( { controller: null, page: currentPage.pageNum + 1 } );
     }
+
+    if ( currentPage.pageNum % 3 == 0 ) {
+      setLoadMoreRecent( true );
+    }
   }, [ loadMore ] );
 
 
@@ -188,7 +193,7 @@ const AnimePage = () => {
             </>
           ) }
         </div>
-        <RecentEpisodes />
+        <RecentEpisodes loadMore={ loadMoreRecent } setLoadMore={ setLoadMoreRecent } />
       </div>
     </>
   );

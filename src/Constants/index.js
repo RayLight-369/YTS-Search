@@ -41,4 +41,5 @@ export const NavbarLinks = [
 export const TYPES = {
   TOP_AIRING: "TOP_AIRING",
   SEARCH: "SEARCH",
+  RECENT_EPISODES: "RECENT_EPISODES",
 };
