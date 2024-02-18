@@ -1,6 +1,7 @@
 import { useState, useEffect, memo } from "react";
 import Styles from "./RecentEpisodes.module.css";
 import { TYPES } from "../../Constants";
+import { Link } from "react-router-dom";
 
 const RecentEpisodes = ( { className, loadMore, setLoadMore } ) => {
   const [ recentEpisodes, setRecentEpisodes ] = useState( null );
@@ -32,7 +33,7 @@ const RecentEpisodes = ( { className, loadMore, setLoadMore } ) => {
         } );
 
         if ( page == 1 ) setRecentEpisodes( body );
-        else setRecentEpisodes( prev => ( {
+        else if ( loadMore && setLoadMore ) setRecentEpisodes( prev => ( {
           currentPage: body.currentPage,
           hasNextPage: body.hasNextPage,
           results: [
@@ -66,7 +67,7 @@ const RecentEpisodes = ( { className, loadMore, setLoadMore } ) => {
         Recent Episodes
       </p>
       { recentEpisodes?.results.length && recentEpisodes.results.map( ( ep, id ) => (
-        <a href={ `/anime/${ ep.id }/${ ep.episodeId }` } target='_blank' onClick={ e => e.stopPropagation() }>
+        <Link to={ `/anime/${ ep.id }/${ ep.episodeId }` } onClick={ e => e.stopPropagation() }>{/** target='_blank' */ }
           <div className={ Styles[ "episode-container" ] } key={ id }>
             <img src={ ep.image } alt="" />
             <div className={ Styles[ "content" ] }>
@@ -74,7 +75,7 @@ const RecentEpisodes = ( { className, loadMore, setLoadMore } ) => {
               <p className={ Styles[ "number" ] }>Episode { ep.episodeNumber }</p>
             </div>
           </div>
-        </a>
+        </Link>
       ) )
       }
     </div>

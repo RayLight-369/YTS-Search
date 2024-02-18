@@ -9,6 +9,7 @@ import { ReactComponent as Play } from "../../Assets/Imgs/play.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import Modal from "../Modal/Modal";
 import useScrollDirection from "../../Hooks/useScrollDirection";
+import { Link } from "react-router-dom";
 
 const AnimeCard = ( {
   anime
@@ -59,9 +60,9 @@ const AnimeCard = ( {
 
   return (
     <>
-      <a
-        href={ `/anime/${ anime.id }` }
-        target="_blank"
+      <Link
+        to={ `/anime/${ anime.id }` }
+        // target="_blank"
         className={ Styles.cover }
         onClick={ ( e ) => {
           // e.preventDefault();
@@ -129,7 +130,7 @@ const AnimeCard = ( {
           <p className={ Styles[ "description" ] }>{ animeInfo?.description }</p>
         </div >*/}
 
-      </a >
+      </Link >
 
     </>
   );

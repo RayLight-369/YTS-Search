@@ -137,11 +137,11 @@ const AnimeInfoPage = () => {
               </div>
             </div>
             <div className={ Styles[ "episode-streaming" ] }>
-              <Outlet />
+              <Outlet context={ [ animeInfo?.episodes?.[ 0 ]?.number, animeInfo?.episodes?.[ animeInfo?.episodes.length - 1 ]?.number, animeInfo?.episodes ] } />
             </div>
           </div>
         ) }
-        <RecentEpisodes className={ Styles[ "recent-episodes" ] } />
+        <RecentEpisodes className={ Styles[ "recent-episodes" ] } loadMore={ false } setLoadMore={ () => { } } />
       </div>
     </div >
   );
