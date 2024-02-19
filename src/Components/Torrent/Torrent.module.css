@@ -8,6 +8,8 @@ a.torrent {
   padding: 10px 20px;
   font-family: Quicksand;
   transition: 150ms;
+  position: relative;
+  z-index: 5;
 }
 
 a.torrent p {
