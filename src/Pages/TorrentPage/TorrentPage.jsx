@@ -46,6 +46,8 @@ const TorrentPage = () => {
 
       fetchTorrents( { controller } );
 
+    } else {
+      fetchTorrents( { controller: null, query: "a" } );
     }
 
     return () => controller.abort();

@@ -1,6 +1,6 @@
 a.torrent {
   width: calc(100vw - 130px);
-  background: #c6bdd4;
+  background: #cac4d3;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,5 +29,11 @@ div.size-download a .icon {
 
 a.torrent:hover {
   transform: scale(1.04);
-  background: #e1d8ef;
+  background: #f4ecff;
+}
+
+@media (max-width: 767px) {
+  a.torrent {
+    width: calc(100vw - 40px);
+  }
 }

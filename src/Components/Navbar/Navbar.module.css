@@ -59,11 +59,12 @@ header.header div.logo img {
   header.header nav.nav {
     position: relative;
     left: -6px;
-    gap: 22px;
+    gap: 12px;
   }
 
   header.header nav.nav a {
-    font-size: 13px;
+    font-size: 13.5px;
+    padding: 6px;
   }
 
   header.header div.logo img {
