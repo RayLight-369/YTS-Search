@@ -141,8 +141,18 @@ div.filters button.active::before {
   }
 
   div.torrent-section {
-    gap: 15px;
+    gap: 60px;
     /* justify-content: center; */
+  }
+
+  div.filters {
+    width: auto;
+    gap: 0;
+  }
+
+  div.filters button {
+    font-size: 15px;
+    padding: 8px 18px;
   }
 
 }
