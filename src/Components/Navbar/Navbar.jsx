@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { NavbarLinks } from "../../Constants/index";
+import { API_URLS, NavbarLinks } from "../../Constants/index";
 import { NavLink, Outlet } from "react-router-dom";
 import Styles from "./Navbar.module.css";
 
@@ -20,7 +20,7 @@ const Navbar = () => {
 
     async function PostView () {
       try {
-        const response = await fetch( "https://anime-api-liart.vercel.app/num-of-viewers", {
+        const response = await fetch( API_URLS.VIEWERS_COUNT, {
           method: "POST",
           body: JSON.stringify( {
             visited: !!getCookie( "deviceVisited" )

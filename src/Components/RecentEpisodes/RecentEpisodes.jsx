@@ -1,6 +1,6 @@
 import { useState, useEffect, memo } from "react";
 import Styles from "./RecentEpisodes.module.css";
-import { TYPES } from "../../Constants";
+import { API_URLS, TYPES } from "../../Constants";
 import { Link } from "react-router-dom";
 
 const RecentEpisodes = ( { className, loadMore, setLoadMore } ) => {
@@ -13,7 +13,7 @@ const RecentEpisodes = ( { className, loadMore, setLoadMore } ) => {
 
   const fetchRecentEpisodes = async ( { controller, page = 1 } ) => {
     try {
-      const response = await fetch( "https://anime-api-liart.vercel.app/recent-episodes", {
+      const response = await fetch( API_URLS.RECENT_EPISODES, {
         method: "POST",
         body: JSON.stringify( {
           page

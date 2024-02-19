@@ -3,7 +3,7 @@ import Styles from "./AnimePage.module.css";
 import Search from '../../Components/Search/Search';
 import useAnime from '../../Hooks/useAnime';
 import AnimeCardContainer from '../../Components/AnimeCardContainer/AnimeCardContainer';
-import { TYPES } from '../../Constants';
+import { API_URLS, TYPES } from '../../Constants';
 import useOnScreen from '../../Hooks/useOnScreen';
 import RecentEpisodes from '../../Components/RecentEpisodes/RecentEpisodes';
 
@@ -11,7 +11,6 @@ const AnimePage = () => {
 
   const [ input, setInput ] = useState( "" );
   const [ searchResults, setSearchResults ] = useState( null );
-  const [ currentPageType, setCurrentPageType ] = useState( TYPES.TOP_AIRING );
   const [ loadMore, setLoadMore ] = useState( false );
   const [ paused, setPaused ] = useState( true );
   const [ loadMoreRecent, setLoadMoreRecent ] = useState( false );
@@ -33,7 +32,7 @@ const AnimePage = () => {
     setPaused( true );
 
     try {
-      const response = await fetch( "https://anime-api-liart.vercel.app/top-airing", {
+      const response = await fetch( API_URLS.TOP_AIRING, {
         method: "POST",
         body: JSON.stringify( {
           page
@@ -75,7 +74,7 @@ const AnimePage = () => {
     setPaused( true );
 
     try {
-      const response = await fetch( "https://anime-api-liart.vercel.app/search", {
+      const response = await fetch( API_URLS.ANIME_SEARCH, {
         method: "POST",
         body: JSON.stringify( {
           query,

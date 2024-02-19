@@ -35,6 +35,10 @@ export const NavbarLinks = [
   {
     name: "Anime",
     link: "/anime"
+  },
+  {
+    name: "Torrents",
+    link: "/torrents"
   }
 ];
 
@@ -42,4 +46,13 @@ export const TYPES = {
   TOP_AIRING: "TOP_AIRING",
   SEARCH: "SEARCH",
   RECENT_EPISODES: "RECENT_EPISODES",
+  TORRENT_SEARCH: "TORRENT_SEARCH"
+};
+
+export const API_URLS = {
+  ANIME_SEARCH: "https://anime-api-liart.vercel.app/search",
+  TOP_AIRING: "https://anime-api-liart.vercel.app/top-airing",
+  VIEWERS_COUNT: "https://anime-api-liart.vercel.app/num-of-viewers",
+  RECENT_EPISODES: "https://anime-api-liart.vercel.app/recent-episodes",
+  TORRENT_SEARCH: "https://anime-api-liart.vercel.app/torrents"
 };

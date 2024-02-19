@@ -8,6 +8,7 @@ import AnimePage from './Pages/AnimePage/AnimePage';
 import { AnimatePresence } from 'framer-motion';
 import AnimeInfoPage from './Pages/AnimeInfoPage/AnimeInfoPage';
 import Episode from './Pages/Episode/Episode';
+import TorrentPage from './Pages/TorrentPage/TorrentPage';
 
 function App () {
   return (
@@ -21,6 +22,7 @@ function App () {
             <Route path='/anime/:animeID' element={ <AnimeInfoPage /> }>
               <Route path='/anime/:animeID/:epID' element={ <Episode /> } />
             </Route>
+            <Route path='/torrents' element={ <TorrentPage /> } />
           </Route>
         </Routes>
       </AnimatePresence>

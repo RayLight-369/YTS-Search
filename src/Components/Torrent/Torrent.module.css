@@ -1,0 +1,33 @@
+a.torrent {
+  width: calc(100vw - 130px);
+  background: #c6bdd4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 3px 10px;
+  padding: 10px 20px;
+  font-family: Quicksand;
+  transition: 150ms;
+}
+
+a.torrent p {
+  font-weight: 500;
+  color: #2f2036;
+}
+
+div.size-download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+div.size-download a .icon {
+  height: 18px;
+  width: auto;
+}
+
+a.torrent:hover {
+  transform: scale(1.04);
+  background: #e1d8ef;
+}

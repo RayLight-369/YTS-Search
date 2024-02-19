@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from "react";
 import Styles from "./HomePage.module.css";
 import { AnimatePresence, motion } from "framer-motion";
-import { SocialLionks } from "../../Constants";
+import { API_URLS, SocialLionks } from "../../Constants";
 import Loader from "../../Assets/Imgs/loader.gif";
 
 
@@ -53,7 +53,7 @@ const HomePage = () => {
 
     const handleStateChange = ( e ) => {
       setStateLoaded();
-      fetch( "https://anime-api-liart.vercel.app/num-of-viewers" ).then( data => data.json() ).then( ( body ) => {
+      fetch( API_URLS.VIEWERS_COUNT ).then( data => data.json() ).then( ( body ) => {
         setViewersCount( body.count );
       } );
     };
@@ -100,7 +100,7 @@ const HomePage = () => {
         return;
       }
 
-      fetch( "https://anime-api-liart.vercel.app/num-of-viewers" ).then( data => data.json() ).then( ( body ) => {
+      fetch( API_URLS.VIEWERS_COUNT ).then( data => data.json() ).then( ( body ) => {
         setViewersCount( body.count );
       } );
     }
