@@ -55,6 +55,7 @@ div.hero .inputs {
 
 div.torrent-section {
   height: auto;
+  min-height: 20vh;
   width: 100vw;
   position: relative;
   z-index: 2;
@@ -62,6 +63,7 @@ div.torrent-section {
   justify-content: center;
   background: #110611;
   box-shadow: 0 -120px 90px #110611;
+  padding-bottom: 50px;
 }
 
 div.torrents-container {
