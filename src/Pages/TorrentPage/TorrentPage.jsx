@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Styles from "./TorrentPage.module.css";
 import Search from '../../Components/Search/Search';
 import { TYPES, API_URLS } from '../../Constants';
@@ -8,14 +8,17 @@ const TorrentPage = () => {
 
   const [ input, setInput ] = useState( "" );
   const [ searchResults, setSearchResults ] = useState( null );
+  const [ Filter, setFilter ] = useState( "All" );
+  const Filters = useMemo( () => [ 'All', 'Movies', 'TV', 'Music', 'Apps', 'Books' ], [] );
 
-  const fetchTorrents = async ( { controller, query = input } ) => {
+  const fetchTorrents = async ( { controller, query = input, category = Filter } ) => {
 
     try {
       const response = await fetch( API_URLS.TORRENT_SEARCH, {
         method: "POST",
         body: JSON.stringify( {
           query,
+          category
         } ),
         headers: {
           "Content-Type": "application/json" // Set content type header
@@ -38,6 +41,10 @@ const TorrentPage = () => {
     }
   };
 
+  const handleFilterClick = ( category ) => {
+    setFilter( category );
+  };
+
 
   useEffect( () => {
     const controller = new AbortController();
@@ -52,7 +59,7 @@ const TorrentPage = () => {
 
     return () => controller.abort();
 
-  }, [ input ] );
+  }, [ input, Filter ] );
 
 
   return (
@@ -71,6 +78,11 @@ const TorrentPage = () => {
         </div>
       </div>
       <div className={ Styles[ "torrent-section" ] }>
+        <div className={ Styles[ "filters" ] }>
+          { Filters.map( ( filter, key ) => (
+            <button type='button' key={ key } onClick={ () => handleFilterClick( filter ) } className={ `${ Styles[ 'filter-btn' ] } ${ filter === Filter && Styles[ "active" ] }` }>{ filter }</button>
+          ) ) }
+        </div>
         <div className={ Styles[ "torrents-container" ] }>
           { searchResults?.length && searchResults?.map( ( torrent, key ) => (
             <Torrent torrent={ torrent } key={ key } />

@@ -11,7 +11,7 @@ img.bg-img {
 
 div.bg {
   width: 100vw;
-  height: 92vh;
+  height: 86vh;
   background: #0e060ede;
   display: flex;
   justify-content: center;
@@ -60,7 +60,9 @@ div.torrent-section {
   position: relative;
   z-index: 2;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 70px;
+  align-items: center;
   background: #110611;
   box-shadow: 0 -120px 90px #110611;
   padding-bottom: 50px;
@@ -70,9 +72,61 @@ div.torrents-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   gap: 10px;
+}
+
+div.filters {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  /* left: 55px; */
+}
+
+div.filters::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  width: 100%;
+  height: 1.5px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+
+}
+
+div.filters button {
+  padding: 10px 22px;
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 16px;
+  position: relative;
+}
+
+div.filters button::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1.3px;
+  border-radius: 3px;
+  /* background: white; */
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  bottom: -3px;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .24s ease-in-out;
+}
+
+div.filters button:hover::before,
+div.filters button.active::before {
+  transform-origin: left;
+  transform: scaleX(1);
 }
 
 @media (max-width: 768px) {
